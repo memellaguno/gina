@@ -29,6 +29,20 @@ import stepsType from "./blocks/stepsType";
 import miniGalleriesType from "./blocks/miniGalleriesType";
 import productDetailsType from "./blocks/productDetailsType";
 import documentationType from "./blocks/documentationType";
+// Gina specific blocks
+import heroHomeType from "./blocks/heroHomeType";
+import heroAboutType from "./blocks/heroAboutType";
+import introTextType from "./blocks/introTextType";
+import videoGalleryType from "./blocks/videoGalleryType";
+import featuredInitiativeType from "./blocks/featuredInitiativeType";
+import logoMarqueeType from "./blocks/logoMarqueeType";
+import ctaBannerType from "./blocks/ctaBannerType";
+import imageSliderType from "./blocks/imageSliderType";
+import logoGridType from "./blocks/logoGridType";
+import awardsAccordionType from "./blocks/awardsAccordionType";
+import initiativesAccordionType from "./blocks/initiativesAccordionType";
+import publishingType from "./blocks/publishingType";
+import quoteType from "./blocks/quoteType";
 
 export const schemaTypes = [
   // Singletons
@@ -48,7 +62,7 @@ export const schemaTypes = [
   navLink,
   projects,
   photoGallery,
-  // Blocks
+  // Existing Blocks
   formType,
   galleryType,
   heroType,
@@ -64,4 +78,18 @@ export const schemaTypes = [
   miniGalleriesType,
   productDetailsType,
   documentationType,
+  // Gina specific blocks
+  heroHomeType,
+  heroAboutType,
+  introTextType,
+  videoGalleryType,
+  featuredInitiativeType,
+  logoMarqueeType,
+  ctaBannerType,
+  imageSliderType,
+  logoGridType,
+  awardsAccordionType,
+  initiativesAccordionType,
+  publishingType,
+  quoteType,
 ];

@@ -10,7 +10,37 @@ export default defineType({
   title: "Settings",
   type: "document",
   icon: CogIcon,
+  fieldsets: [
+    {
+      name: "language",
+      title: "Language Settings",
+      options: { collapsible: true, collapsed: false },
+    },
+  ],
   fields: [
+    // Language Settings
+    defineField({
+      name: "enableEnglish",
+      title: "Enable English Website",
+      description: "When enabled, the English version of the site will be accessible at /en/",
+      type: "boolean",
+      initialValue: false,
+      fieldset: "language",
+    }),
+    defineField({
+      name: "defaultLanguage",
+      title: "Default Language",
+      type: "string",
+      initialValue: "es",
+      options: {
+        list: [
+          { title: "Spanish", value: "es" },
+          { title: "English", value: "en" },
+        ],
+      },
+      fieldset: "language",
+      hidden: true, // Spanish is always default for this project
+    }),
     defineField({
       name: "websiteTitle",
       description: "This field is the title of your website.",

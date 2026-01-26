@@ -54,7 +54,7 @@ const SANITY_STUDIO_PREVIEW_URL = process.env.SANITY_STUDIO_PREVIEW_URL;
 
 export default defineConfig({
   name: "Project",
-  title: "Superia",
+  title: "Gina",
   icon: () => <Circle size={10} />,
   basePath: "/studio",
   projectId,

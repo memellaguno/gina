@@ -13,8 +13,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "extract-types": "npx sanity@latest schema extract --enforce-required-fields",
-    "typegen": "npx sanity@latest schema extract && npx sanity@latest typegen generate"
+    "extract-types": "./node_modules/.bin/sanity schema extract --enforce-required-fields",
+    "typegen": "./node_modules/.bin/sanity schema extract && ./node_modules/.bin/sanity typegen generate"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.11",

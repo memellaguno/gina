@@ -39,7 +39,7 @@ export const structure = (S: any, context: any) =>
           ].includes(listItem.getId()),
       ),
       // Optional configuration
-      orderableDocumentListDeskItem({
+/*       orderableDocumentListDeskItem({
         type: "products",
         title: "Productos",
         icon: Target,
@@ -47,7 +47,7 @@ export const structure = (S: any, context: any) =>
         // pass from the structure callback params above
         S,
         context,
-      }),
+      }), */
       S.divider(),
       singletonListItem(S, "header", "Navigation Menus").icon(PanelTop),
       singletonListItem(S, "settings", "Site Settings").icon(CogIcon),

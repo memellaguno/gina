@@ -18,6 +18,21 @@ import { ProductDetails } from "@/components/blocks/ProductDetails";
 import MiniGalleries from "./blocks/MiniGalleries";
 import { Documentation } from "@/components/blocks/Documentation";
 
+// Gina Diez Barroso blocks
+import HeroHome from "@/components/blocks/HeroHome";
+import HeroAbout from "@/components/blocks/HeroAbout";
+import IntroText from "@/components/blocks/IntroText";
+import VideoGallery from "@/components/blocks/VideoGallery";
+import FeaturedInitiative from "@/components/blocks/FeaturedInitiative";
+import LogoMarquee from "@/components/blocks/LogoMarquee";
+import CtaBanner from "@/components/blocks/CtaBanner";
+import ImageSlider from "@/components/blocks/ImageSlider";
+import LogoGrid from "@/components/blocks/LogoGrid";
+import AwardsAccordion from "@/components/blocks/AwardsAccordion";
+import InitiativesAccordion from "@/components/blocks/InitiativesAccordion";
+import Publishing from "@/components/blocks/Publishing";
+import Quote from "@/components/blocks/Quote";
+
 type BlocksType = {
   [key: string]: React.FC<any>;
 };
@@ -30,10 +45,26 @@ type BlockType = {
 type BlockProps = {
   index: number;
   block: BlockType;
+  lang?: "es" | "en";
 };
 
 //Add your blocks here
 const Blocks: BlocksType = {
+  // Gina Diez Barroso blocks
+  heroHome: HeroHome,
+  heroAbout: HeroAbout,
+  introText: IntroText,
+  videoGallery: VideoGallery,
+  featuredInitiative: FeaturedInitiative,
+  logoMarquee: LogoMarquee,
+  ctaBanner: CtaBanner,
+  imageSlider: ImageSlider,
+  logoGrid: LogoGrid,
+  awardsAccordion: AwardsAccordion,
+  initiativesAccordion: InitiativesAccordion,
+  publishing: Publishing,
+  quote: Quote,
+  // Existing blocks
   callToAction: Cta,
   infoSection: Info,
   hero: Hero,
@@ -53,13 +84,14 @@ const Blocks: BlocksType = {
   documentationType: Documentation,
 };
 
-export default function BlockRenderer({ block, index }: BlockProps) {
+export default function BlockRenderer({ block, index, lang = "es" }: BlockProps) {
   // Block does exist
   if (typeof Blocks[block._type] !== "undefined") {
     return React.createElement(Blocks[block._type], {
       key: block._id,
       block: block,
       index: index,
+      lang: lang,
     });
   }
   // Block doesn't exist yet

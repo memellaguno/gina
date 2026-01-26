@@ -23,7 +23,12 @@ import { getImageDimensions } from "@sanity/asset-utils";
 import { cn } from "@/lib/utils";
 import ResolvedLink from "./ResolvedLink";
 
-export default async function Header({ headerTheme }: { headerTheme: string }) {
+type HeaderProps = {
+  headerTheme: string;
+  lang?: "es" | "en";
+};
+
+export default async function Header({ headerTheme, lang = "es" }: HeaderProps) {
   const {
     data: {
       header: { navigation, websiteTitle },

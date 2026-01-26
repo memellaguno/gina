@@ -3,6 +3,21 @@ import { DocumentIcon } from "@sanity/icons";
 import { Globe } from "lucide-react";
 
 export const SCHEMA_ARRAY_OF_BLOCKS = [
+  // Gina specific blocks
+  { type: "heroHome" },
+  { type: "heroAbout" },
+  { type: "introText" },
+  { type: "videoGallery" },
+  { type: "featuredInitiative" },
+  { type: "logoMarquee" },
+  { type: "ctaBanner" },
+  { type: "imageSlider" },
+  { type: "logoGrid" },
+  { type: "awardsAccordion" },
+  { type: "initiativesAccordion" },
+  { type: "publishing" },
+  { type: "quote" },
+  // Existing blocks
   { type: "callToAction" },
   { type: "infoSection" },
   { type: "hero" },

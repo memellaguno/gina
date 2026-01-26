@@ -12,7 +12,11 @@ import {
 import { urlForImage } from "@/sanity/lib/utils";
 import { navUrlProcessor } from "@/lib/helpers";
 import ResolvedLink from "./ResolvedLink";
-export default async function Footer() {
+type FooterProps = {
+  lang?: "es" | "en";
+};
+
+export default async function Footer({ lang = "es" }: FooterProps) {
   const {
     data: { settings },
   } = await sanityFetch({ query: GLOBAL_SETTINGS_QUERY });

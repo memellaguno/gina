@@ -17,36 +17,37 @@ html {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --background: 40 44% 96%;
+    --foreground: 236 93% 32%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card-foreground: 236 93% 32%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    /* use these */
-    --primary: 156 97% 14%;
-    --primary-foreground: 156 97% 14%;
-    --secondary: 13 47% 51%;
-    --secondary-foreground: 153 52% 56%;
-    --accent: 153 52% 56%;
-    --accent-foreground: 150 45% 87%;
-    --muted: 50 100% 98%;
-    --muted-foreground: 0 0% 45.1%;
-    --extra-gray: 156 10% 90%;
-    --extra-green: 152 32% 91%;
-    --extra-brown: 49 38% 91%;
+    --popover-foreground: 236 93% 32%;
+    /* Gina Diez Barroso Brand Colors */
+    --primary: 236 93% 32%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 324 79% 50%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 236 93% 32%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 40 44% 96%;
+    --muted-foreground: 207 18% 24%;
+    /* Purple gradient for decorative dots */
+    --extra-purple: 270 76% 44%;
+    --extra-magenta: 310 87% 35%;
+    --extra-pink: 324 79% 50%;
     /* ----- */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --border: 207 18% 24%;
+    --input: 207 18% 24%;
+    --ring: 236 93% 32%;
+    --chart-1: 324 79% 50%;
+    --chart-2: 236 93% 32%;
+    --chart-3: 270 76% 44%;
+    --chart-4: 310 87% 35%;
+    --chart-5: 207 18% 24%;
+    --radius: 0rem;
   }
   .dark {
     --background: 0 0% 3.9%;
