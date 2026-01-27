@@ -81,6 +81,8 @@ interface ProductDetailsType {
   };
 }
 
+//unknown
+
 export function ProductDetails({ block }: { block: ProductDetailsType }) {
   const backgroundColor = stegaClean(block.product.backgroundColor);
   return (

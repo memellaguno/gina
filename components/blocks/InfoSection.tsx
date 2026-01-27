@@ -9,6 +9,8 @@ type InfoProps = {
   index: number;
 };
 
+//UNKNOWN
+
 export default function InfoSection({ block }: InfoProps) {
   if (!block) return null;
 

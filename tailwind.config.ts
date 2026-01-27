@@ -11,21 +11,21 @@ export default {
   	extend: {
   		fontFamily: {
   			display: [
-  				'var(--font-financier)'
+  				'var(--font-flecham)'
   			],
   			body: [
-  				'var(--font-mabry)'
+  				'var(--font-modale)'
   			],
   			serif: [
-  				'var(--font-financier)',
+  				'var(--font-flecham)',
   				'serif'
   			],
   			sans: [
-  				'var(--font-mabry)',
+  				'var(--font-modale)',
   				'sans-serif'
   			],
   			DEFAULT: [
-  				'var(--font-mabry)',
+  				'var(--font-modale)',
   				'sans-serif'
   			]
   		},

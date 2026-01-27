@@ -9,6 +9,8 @@ type Props = {
   lang?: "es" | "en";
 };
 
+//HOME /CTA BLUE and MAGENTA
+
 export default function CtaBanner({ block, lang = "es" }: Props) {
   const eyebrow = lang === "en" && block.eyebrowEn ? block.eyebrowEn : block.eyebrow;
   const heading = lang === "en" && block.headingEn ? block.headingEn : block.heading;
@@ -22,14 +24,14 @@ export default function CtaBanner({ block, lang = "es" }: Props) {
   const style = stegaClean(block.style) || "speaking";
 
   const styleClasses = {
-    speaking: "bg-primary text-white",
-    newsletter: "bg-secondary text-white",
-    quote: "bg-muted text-secondary",
+    speaking: "bg-primary text-white py-24",
+    newsletter: "section bg-secondary-child text-white py-8",
+    quote: "bg-muted text-secondary py-24",
   };
 
   return (
-    <section className={cn("w-full py-24 px-8", styleClasses[style as keyof typeof styleClasses])}>
-      <div className="mx-auto flex w-full max-w-[1400px] flex-col items-center text-center">
+    <section className={cn("w-full px-8", styleClasses[style as keyof typeof styleClasses])}>
+      <div className="mx-auto flex w-full max-w-[1900px] flex-col items-center text-center">
         {eyebrow && style !== "quote" && (
           <p className="mb-4 text-sm font-medium uppercase lg:text-base">
             {eyebrow}
@@ -46,7 +48,7 @@ export default function CtaBanner({ block, lang = "es" }: Props) {
           </h2>
         )}
         {subheading && style !== "quote" && (
-          <p className="mb-8 max-w-lg text-lg md:text-xl lg:text-2xl">
+          <p className="mb-8 max-w-lg text-lg md:text-xl lg:text-1xl">
             {subheading.split("\n").map((line, i) => (
               <span key={i}>
                 {line}
@@ -63,29 +65,30 @@ export default function CtaBanner({ block, lang = "es" }: Props) {
 
         {/* Newsletter Form */}
         {style === "newsletter" && (
-          <form className="flex w-full max-w-md flex-col gap-4 sm:flex-row">
+          <form className="newsletter-form">
             <input
               type="email"
               placeholder={lang === "en" ? "ENTER YOUR EMAIL" : "INGRESA TU EMAIL"}
               required
-              className="flex-1 border border-white/30 bg-transparent px-4 py-3 text-sm uppercase placeholder:text-white/60 focus:border-white focus:outline-none"
             />
             <button
               type="submit"
-              className="flex items-center justify-center gap-2 bg-white px-6 py-3 text-sm font-medium uppercase text-secondary transition-colors hover:bg-white/90"
+              className="opacity-100 hover:opacity-90"
             >
               {buttonText || (lang === "en" ? "Sign Up" : "Suscribirse")}
-              <ArrowRight className="h-4 w-4" />
+              <svg width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 5.31836L12.8681 10.3184M17 5.31836L12.8681 0.318359M17 5.31836L2.5828e-07 5.31836" stroke="#ffffff"></path></svg>
             </button>
           </form>
         )}
 
         {/* Regular Button with Link */}
+
         {style !== "newsletter" && style !== "quote" && buttonText && block.link && (
           <ResolvedLink
             link={block.link}
             className={cn(
-              "inline-flex items-center gap-2 border px-6 py-2 text-sm font-medium uppercase transition-colors",
+              "inline-flex items-center gap-2 border px-6 py-2 text-sm uppercase transition-colors",
               style === "speaking"
                 ? "border-white text-white hover:bg-white hover:text-primary"
                 : "border-secondary text-secondary hover:bg-secondary hover:text-white"

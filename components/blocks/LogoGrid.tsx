@@ -8,6 +8,8 @@ type Props = {
   lang?: "es" | "en";
 };
 
+//unknown
+
 export default function LogoGrid({ block, lang = "es" }: Props) {
   const heading = lang === "en" && block.headingEn ? block.headingEn : block.heading;
   const logos = block.logos || [];

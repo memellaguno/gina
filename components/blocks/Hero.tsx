@@ -7,6 +7,8 @@ import StyledResolvedLink from "../StyledResolvedLink";
 import { Hero as HeroType } from "@/sanity.types";
 import { stegaClean } from "next-sanity";
 
+//unknown
+
 export default function Hero({ block }: { block: HeroType }) {
   const hasClaims =
     block.claims && Array.isArray(block.claims) && block.claims.length > 0;

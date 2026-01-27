@@ -11,9 +11,14 @@ type Props = {
   lang?: "es" | "en";
 };
 
+//HOME /VIDEOS
+
 export default function VideoGallery({ block, lang = "es" }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const videos = block.videos || [];
+
+  const isPrevDisabled = currentIndex === 0;
+  const isNextDisabled = currentIndex === videos.length - 1;
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? videos.length - 1 : prev - 1));
@@ -26,10 +31,10 @@ export default function VideoGallery({ block, lang = "es" }: Props) {
   if (!videos.length) return null;
 
   return (
-    <section className="relative w-full bg-transparent py-8">
+    <section className="relative w-full bg-transparent py-8 overflow-hidden">
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
         {/* Slider */}
-        <div className="relative overflow-hidden">
+        <div className="relative ">
           <div
             className="flex transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -67,11 +72,11 @@ export default function VideoGallery({ block, lang = "es" }: Props) {
                       </>
                     ) : null}
                   </div>
-                  {title && (
+                  {/*title && (
                     <p className="mt-4 text-center text-lg font-medium text-foreground">
                       {title}
                     </p>
-                  )}
+                  )*/}
                 </div>
               );
             })}
@@ -83,17 +88,19 @@ export default function VideoGallery({ block, lang = "es" }: Props) {
           <>
             <button
               onClick={goToPrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white p-2 shadow-lg transition-colors hover:bg-gray-100"
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-primary p-3 transition-colors opacity-90 hover:opacity-100" 
               aria-label="Previous video"
+              style={{ visibility: isPrevDisabled ? 'hidden' : 'visible' }}
             >
-              <ChevronLeft className="h-6 w-6 text-primary" />
+              <ChevronLeft className="h-8 w-8 text-white" />
             </button>
             <button
               onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white p-2 shadow-lg transition-colors hover:bg-gray-100"
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-primary p-3 transition-colors opacity-90 hover:opacity-100"
               aria-label="Next video"
+              style={{ display: isNextDisabled ? 'none' : 'block' }}
             >
-              <ChevronRight className="h-6 w-6 text-primary" />
+              <ChevronRight className="h-8 w-8 text-white" />
             </button>
           </>
         )}
@@ -105,8 +112,8 @@ export default function VideoGallery({ block, lang = "es" }: Props) {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`h-2 w-2 rounded-full transition-colors ${
-                  index === currentIndex ? "bg-secondary" : "bg-gray-300"
+                className={`h-2.5 w-2.5 rounded-full transition-colors ${
+                  index === currentIndex ? "bg-primary" : "bg-gray-300"
                 }`}
                 aria-label={`Go to video ${index + 1}`}
               />

@@ -10,16 +10,18 @@ type Props = {
   lang?: "es" | "en";
 };
 
+//HOME /logos
+
 export default function LogoMarquee({ block, lang = "es" }: Props) {
   const logos = block.logos || [];
 
   if (!logos.length) return null;
 
   // Duplicate logos for seamless infinite scroll
-  const duplicatedLogos = [...logos, ...logos];
+  const duplicatedLogos = [...logos, ...logos, ...logos];
 
   return (
-    <section className="w-full overflow-hidden bg-transparent py-8">
+    <section className="w-full overflow-hidden bg-transparent py-8 mb-8">
       <div className="relative">
         <div className="animate-marquee flex items-center gap-16">
           {duplicatedLogos.map((logo, index) => {
@@ -35,7 +37,7 @@ export default function LogoMarquee({ block, lang = "es" }: Props) {
                 className="flex-shrink-0"
               >
                 {logo.image?.asset?._ref && (
-                  <div className="relative h-12 w-32 md:h-16 md:w-40">
+                  <div className="relative h-12 w-32 md:h-24 md:w-64">
                     <Image
                       src={urlForImage(logo.image)?.url() || ""}
                       alt={logo.image.alt || logo.name || "Logo"}
@@ -60,7 +62,7 @@ export default function LogoMarquee({ block, lang = "es" }: Props) {
           }
         }
         .animate-marquee {
-          animation: marquee 30s linear infinite;
+          animation: marquee 15s linear infinite;
         }
         .animate-marquee:hover {
           animation-play-state: paused;

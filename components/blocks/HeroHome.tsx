@@ -8,6 +8,8 @@ type Props = {
   lang?: "es" | "en";
 };
 
+//HOME /HERO PRINCIPAL
+
 export default function HeroHome({ block, lang = "es" }: Props) {
   const tagline = lang === "en" && block.taglineEn ? block.taglineEn : block.tagline;
   const heading = lang === "en" && block.headingEn ? block.headingEn : block.heading;
@@ -15,7 +17,7 @@ export default function HeroHome({ block, lang = "es" }: Props) {
   return (
     <section className="w-full">
       <div className="mx-auto w-full max-w-[1900px] px-4 py-6 md:px-8 md:py-10">
-        <div className="relative min-h-[500px] overflow-hidden md:min-h-[700px]">
+        <div className="relative min-h-[500px] overflow-hidden md:min-h-[700px] h-80vh">
           {/* Background Image */}
           {block.backgroundImage?.asset?._ref && (
             <Image
@@ -28,17 +30,17 @@ export default function HeroHome({ block, lang = "es" }: Props) {
           )}
 
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary/80 to-transparent" />
+          <div className="absolute heroindex-overlay" />
 
           {/* Content */}
-          <div className="relative z-10 flex h-full min-h-[500px] flex-col justify-center px-8 py-16 md:min-h-[700px] md:px-16">
+          <div className="heroindex-content">
             {tagline && (
-              <p className="mb-8 text-sm font-medium text-white lg:text-base">
+              <p className="mb-8 text-sm font-medium text-white lg:text-base text-center">
                 {tagline}
               </p>
             )}
             {heading && (
-              <h1 className="max-w-2xl font-display text-5xl uppercase text-white md:text-6xl lg:text-7xl">
+              <h1 className="max-w-2xl font-display text-5xl uppercase text-white md:text-6xl lg:text-7xl text-center">
                 {heading.split("\n").map((line, i) => (
                   <span key={i}>
                     {line}

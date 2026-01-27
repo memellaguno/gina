@@ -6,6 +6,8 @@ type Props = {
   lang?: "es" | "en";
 };
 
+//unknown
+
 export default function Quote({ block, lang = "es" }: Props) {
   const text = lang === "en" && block.quoteTextEn ? block.quoteTextEn : block.quoteText;
   const attribution =

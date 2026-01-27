@@ -52,15 +52,26 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const financier = localFont({
-  src: "../fonts/financier.woff2",
-  variable: "--font-financier",
+const modale = localFont({
+  src: [
+    {
+      path: '../fonts/modale-reg.woff2',
+      weight: '400', // Regular
+      style: 'normal',
+    },
+    {
+      path: '../fonts/modale-med.woff2',
+      weight: '500', // Medium
+      style: 'normal',
+    },
+  ],
+  variable: '--font-modale', // Optional: for CSS variables
   display: "swap",
 });
 
-const mabry = localFont({
-  src: "../fonts/mabry-reg.woff2",
-  variable: "--font-mabry",
+const flecham = localFont({
+  src: "../fonts/flecham-reg.woff2",
+  variable: "--font-flecham",
   display: "swap",
 });
 
@@ -82,7 +93,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`bg-white text-black ${financier.variable} ${mabry.variable} font-sans`}
+      className={`bg-white text-black ${modale.variable} ${flecham.variable} font-sans`}
     >
       <body className="font-body">
         <section className="">

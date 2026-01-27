@@ -8,6 +8,8 @@ type Props = {
   lang?: "es" | "en";
 };
 
+//unknown
+
 export default function HeroAbout({ block, lang = "es" }: Props) {
   const tagline = lang === "en" && block.taglineEn ? block.taglineEn : block.tagline;
   const heading = lang === "en" && block.headingEn ? block.headingEn : block.heading;
@@ -20,17 +22,17 @@ export default function HeroAbout({ block, lang = "es" }: Props) {
           {/* Text Content */}
           <div className="flex flex-col justify-center">
             {tagline && (
-              <p className="mb-4 text-sm font-medium text-secondary lg:text-base">
+              <p className="mb-4 text-sm font-medium text-primary lg:text-base">
                 {tagline}
               </p>
             )}
             {heading && (
-              <h1 className="mb-6 font-display text-4xl text-secondary md:text-5xl lg:text-6xl">
+              <h1 className="mb-6 font-display text-4xl text-primary md:text-5xl lg:text-6xl">
                 {heading}
               </h1>
             )}
             {introText && (
-              <p className="max-w-lg text-lg leading-relaxed text-foreground/80 md:text-xl">
+              <p className="max-w-lg text-lg leading-relaxed text-primary md:text-xl">
                 {introText}
               </p>
             )}

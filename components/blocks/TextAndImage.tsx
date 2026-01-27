@@ -31,6 +31,8 @@ type TextAndImageProps = {
   block: TextAndImage;
 };
 
+//unknown
+
 export default function TextAndImage({ block }: TextAndImageProps) {
   if (!block) return null;
 

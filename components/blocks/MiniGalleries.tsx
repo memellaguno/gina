@@ -17,6 +17,8 @@ type MiniGalleriesProps = {
   index?: number;
 };
 
+//unknown
+
 export default function MiniGalleries({ block }: MiniGalleriesProps) {
   if (!block) return null;
   const { gallery1, gallery2, gallery3, fixedImage } = block;

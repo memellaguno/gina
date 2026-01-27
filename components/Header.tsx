@@ -59,7 +59,7 @@ export default async function Header({ headerTheme, lang = "es" }: HeaderProps) 
                 "h-full w-auto",
                 headerTheme === "light" && "",
                 headerTheme === "dark" && "",
-                headerTheme === "transparent" && "md:brightness-0 md:invert",
+                headerTheme === "transparent",
               )}
               alt="logo"
             />
@@ -80,72 +80,74 @@ export default async function Header({ headerTheme, lang = "es" }: HeaderProps) 
       className={cn(
         "",
         headerTheme === "transparent" &&
-          "border-b border-white bg-primary text-white",
+          " bg-muted text-primary",
         headerTheme === "light" && "bg-muted text-primary",
         headerTheme === "dark" && "bg-black text-white",
       )}
     >
       <div
         className={cn(
-          "sticky top-0 z-10 mx-auto flex w-full max-w-[1900px] flex-row justify-between px-4 py-3 text-white md:px-8",
+          "sticky top-0 z-10 mx-auto flex w-full max-w-[1900px] flex-row justify-between px-4 text-white md:px-8",
         )}
       >
-        <div className="flex flex-row items-center justify-start">
-          <NavTitle />
-        </div>
-        <div className="flex flex-row gap-5">
-          <div className="flex md:hidden">
-            <Sheet>
-              <SheetTrigger>
-                <Menu />
-              </SheetTrigger>
-              <SheetContent
-                className="h-full bg-white text-left text-black sm:text-left"
-                side="top"
-              >
-                <SheetHeader>
-                  <SheetTitle className="text-inherit">
-                    <NavTitle />
-                  </SheetTitle>
-                  {/* <SheetDescription>Here it is</SheetDescription> */}
-                </SheetHeader>
-                <div className="flex flex-col pt-8 text-3xl text-primary">
-                  {navigation.map((item) => {
-                    return (
-                      <div
-                        key={item._key}
-                        className="w-full border-b border-gray-300 py-2"
-                      >
-                        <SheetClose asChild>
-                          <ResolvedLink link={item.link}>
-                            {item.text}
-                          </ResolvedLink>
-                        </SheetClose>
-                      </div>
-                    );
-                  })}
-                </div>
-              </SheetContent>
-            </Sheet>
+        <div class="w-full navbar-bar mt-4">
+          <div className="flex flex-row items-center justify-start mb-4 ml-4">
+            <NavTitle />
           </div>
-          <div
-            className={cn(
-              "hidden flex-row items-center gap-6 md:flex",
-              headerTheme === "transparent" && "text-white",
-              headerTheme === "light" && "text-primary",
-            )}
-          >
-            {navigation.map((item) => {
-              return (
-                <ResolvedLink
-                  className="last-of-type:rounded-full last-of-type:bg-secondary last-of-type:p-3 last-of-type:px-6 last-of-type:text-white"
-                  key={item._key}
-                  link={item.link}
+          <div className="flex flex-row gap-5 mb-4 mr-4">
+            <div className="flex lg:hidden">
+              <Sheet>
+                <SheetTrigger>
+                  <Menu className="menu"/>
+                </SheetTrigger>
+                <SheetContent
+                  className="h-full bg-white text-left text-black sm:text-left"
+                  side="top"
                 >
-                  {item.text}
-                </ResolvedLink>
-              );
-            })}
+                  <SheetHeader>
+                    <SheetTitle className="text-inherit">
+                      <NavTitle />
+                    </SheetTitle>
+                    {/* <SheetDescription>Here it is</SheetDescription> */}
+                  </SheetHeader>
+                  <div className="flex flex-col pt-8 text-3xl text-primary">
+                    {navigation.map((item) => {
+                      return (
+                        <div
+                          key={item._key}
+                          className="w-full border-b border-gray-300 py-2"
+                        >
+                          <SheetClose asChild>
+                            <ResolvedLink link={item.link}>
+                              {item.text}
+                            </ResolvedLink>
+                          </SheetClose>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
+            <div
+              className={cn(
+                "hidden flex-row items-center gap-6 lg:flex uppercase font-medium",
+                headerTheme === "transparent" && "text-accent-foreground",
+                headerTheme === "light" && "text-primary",
+              )}
+            >
+              {navigation.map((item) => {
+                return (
+                  <ResolvedLink
+                    className="hover:text-primary"
+                    key={item._key}
+                    link={item.link}
+                  >
+                    {item.text}
+                  </ResolvedLink>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
