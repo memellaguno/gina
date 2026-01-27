@@ -1,29 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import React from "react";
 import { cn } from "@/lib/utils";
 import BlockContainer from "../BlockContainer";
-import { MapPin, Mail, Phone, PhoneCall } from "lucide-react";
+import { MapPin, Mail, Phone } from "lucide-react";
 import { urlForImage } from "@/sanity/lib/utils";
 import { Image } from "next-sanity/image";
-// Field type definitions
-interface FormField {
-  name: string;
-  label: string;
-  type: "text" | "email" | "tel" | "textarea" | "checkbox" | "select";
-  required: boolean;
-  placeholder?: string;
-  options?: Array<{
-    label: string;
-    value: string;
-  }>;
-}
+import ContactForm from "@/components/forms/ContactForm";
 
 interface ContactInfo {
-  email?: {
-    email?: string;
-  };
+  email?: string;
   phone?: string;
   address?: string;
 }
@@ -32,20 +18,11 @@ export type ContactBlockType = {
   _key: string;
   _type: "contactBlock";
   heading?: string;
-  caption?: string;
-  text?: string;
+  headingEn?: string;
+  description?: string;
+  descriptionEn?: string;
+  showForm?: boolean;
   contactInfo?: ContactInfo;
-  formFields?: FormField[];
-  submitButtonText?: string;
-  successMessage?: string;
-  layout?: "form-left" | "info-left" | "form-above" | "info-above";
-  settings?: {
-    contactInfo?: {
-      email?: string;
-      phone?: string;
-      address?: string;
-    };
-  };
   image?: {
     asset?: {
       _ref: string;
@@ -56,119 +33,103 @@ export type ContactBlockType = {
 
 type ContactBlockProps = {
   block: ContactBlockType;
-  index?: number;
+  lang?: "es" | "en";
 };
 
-export default function ContactBlock({ block }: ContactBlockProps) {
+export default function ContactBlock({ block, lang = "es" }: ContactBlockProps) {
   if (!block) return null;
 
-  const { heading, caption, text, image } = block;
-  const globalInfo = block.settings?.contactInfo;
-  const contactInfo = block.contactInfo;
+  const heading = lang === "en" && block.headingEn ? block.headingEn : block.heading;
+  const description = lang === "en" && block.descriptionEn ? block.descriptionEn : block.description;
+  const { showForm = true, contactInfo, image } = block;
 
-  const hasEmail = contactInfo?.email?.email;
   const hasImage = image?.asset?._ref;
+  const hasContactInfo = contactInfo?.email || contactInfo?.phone || contactInfo?.address;
 
   return (
     <>
       <BlockContainer
-        backgroundClassName="bg-muted"
-        className="flex-col px-4 py-6 md:px-8 md:py-12"
+        backgroundClassName="bg-white"
+        className="flex-col px-4 py-12 md:px-8 md:py-20"
       >
         <div
           className={cn(
-            "flex w-full flex-col-reverse gap-4 pb-8 md:h-[500px] md:flex-row md:gap-8",
+            "flex w-full flex-col gap-8 md:flex-row md:gap-16",
           )}
         >
-          {/* Left Column */}
-          <section className="flex h-full w-full flex-col justify-between gap-4 md:w-1/2 md:gap-6">
-            <div className="flex w-full flex-col gap-3 md:w-3/5 md:gap-4">
-              {heading && (
-                <h2 className="text-2xl font-black uppercase md:text-6xl">
-                  {heading}
-                </h2>
-              )}
+          {/* Left Column - Info */}
+          <section className="flex w-full flex-col gap-6 md:w-1/2">
+            {heading && (
+              <h2 className="font-display text-secondary text-4xl md:text-5xl lg:text-6xl">
+                {heading}
+              </h2>
+            )}
 
-              {caption && <div className="text-xs md:text-sm">{caption}</div>}
+            {description && (
+              <p className="text-lg text-gray-600 md:text-xl">
+                {description}
+              </p>
+            )}
 
-              {text && <p className="text-base md:text-2xl">{text}</p>}
-            </div>
+            {/* Contact Info */}
+            {hasContactInfo && (
+              <div className="mt-4 flex flex-col gap-4">
+                {contactInfo?.email && (
+                  <div className="flex items-center gap-3">
+                    <Mail className="h-5 w-5 text-secondary" />
+                    <a
+                      href={`mailto:${contactInfo.email}`}
+                      className="text-gray-700 hover:text-secondary transition-colors"
+                    >
+                      {contactInfo.email}
+                    </a>
+                  </div>
+                )}
 
-            {/* Contact Buttons */}
-            {hasEmail && (
-              <div className="mt-4 flex w-full flex-col gap-3 md:mt-0 md:flex-row md:gap-4">
-                <a
-                  className="w-full"
-                  href={`mailto:${contactInfo.email.email}`}
-                >
-                  <button className="flex w-full items-center justify-center rounded-full bg-secondary px-4 py-2 text-sm md:text-base">
-                    <Mail className="mr-1 h-4 w-4 flex-shrink-0 md:h-5 md:w-5" />
-                    Email us
-                  </button>
-                </a>
+                {contactInfo?.phone && (
+                  <div className="flex items-center gap-3">
+                    <Phone className="h-5 w-5 text-secondary" />
+                    <a
+                      href={`tel:${contactInfo.phone}`}
+                      className="text-gray-700 hover:text-secondary transition-colors"
+                    >
+                      {contactInfo.phone}
+                    </a>
+                  </div>
+                )}
+
+                {contactInfo?.address && (
+                  <div className="flex items-start gap-3">
+                    <MapPin className="h-5 w-5 text-secondary mt-1" />
+                    <p className="text-gray-700 whitespace-pre-line">
+                      {contactInfo.address}
+                    </p>
+                  </div>
+                )}
               </div>
             )}
-          </section>
 
-          {/* Right Column */}
-          {hasImage && (
-            <section className="mt-6 h-[250px] w-full bg-gray-100 md:-mb-48 md:mt-0 md:h-auto md:w-1/2">
-              <div className="relative h-full w-full">
+            {/* Optional Image */}
+            {hasImage && (
+              <div className="relative mt-6 aspect-video w-full overflow-hidden">
                 <Image
                   src={urlForImage(image)?.url() as string}
-                  alt={image?.alt || ""}
+                  alt={image?.alt || "Image"}
                   fill
                   className="object-cover"
                 />
               </div>
+            )}
+          </section>
+
+          {/* Right Column - Form */}
+          {showForm && (
+            <section className="w-full md:w-1/2">
+              <ContactForm lang={lang} />
             </section>
           )}
         </div>
       </BlockContainer>
-
-      {globalInfo && (
-        <BlockContainer
-          backgroundClassName="bg-primary"
-          className="w-full px-4 py-6 md:px-8 md:py-10"
-        >
-          <section className="w-full text-white">
-            <div className="flex w-full flex-col gap-3 md:w-2/5 md:gap-1">
-              {globalInfo.address && (
-                <div className="flex items-start">
-                  <MapPin className="mr-2 mt-1 h-4 w-4 flex-shrink-0 md:mr-3 md:h-5 md:w-5" />
-                  <p className="text-balance text-sm md:text-base">
-                    {globalInfo.address}
-                  </p>
-                </div>
-              )}
-
-              {globalInfo.email && (
-                <div className="flex items-center">
-                  <Mail className="mr-2 h-4 w-4 flex-shrink-0 md:mr-3 md:h-5 md:w-5" />
-                  <a
-                    href={`mailto:${globalInfo.email}`}
-                    className="text-sm hover:underline md:text-base"
-                  >
-                    {globalInfo.email}
-                  </a>
-                </div>
-              )}
-
-              {globalInfo.phone && (
-                <div className="flex items-center">
-                  <Phone className="mr-2 h-4 w-4 flex-shrink-0 md:mr-3 md:h-5 md:w-5" />
-                  <a
-                    href={`tel:${globalInfo.phone}`}
-                    className="text-sm hover:underline md:text-base"
-                  >
-                    {globalInfo.phone}
-                  </a>
-                </div>
-              )}
-            </div>
-          </section>
-        </BlockContainer>
-      )}
     </>
   );
 }
