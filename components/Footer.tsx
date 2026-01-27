@@ -43,7 +43,7 @@ export default async function Footer({ lang = "es" }: FooterProps) {
   const legal = settings?.legal || {};
   return (
     <>
-      <div class="w-full bg-accent">
+      <div className="w-full bg-accent">
         <main className="mx-auto flex h-auto w-full max-w-[1900px] flex-col px-4 py-4 uppercase md:px-8 lg:py-8">
           <div className="footer-up">
             {/* Logo Block */}

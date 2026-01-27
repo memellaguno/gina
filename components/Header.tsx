@@ -42,6 +42,7 @@ export default async function Header({ headerTheme, lang = "es" }: HeaderProps) 
     query: HOME_PAGES_SLUGS,
   });
 
+
   // Extract the slug from the first item in the array, or use default
   const homepageSlug = (data && data[0]?.slug) || "home";
   function NavTitle() {
@@ -90,7 +91,7 @@ export default async function Header({ headerTheme, lang = "es" }: HeaderProps) 
           "sticky top-0 z-10 mx-auto flex w-full max-w-[1900px] flex-row justify-between px-4 text-white md:px-8",
         )}
       >
-        <div class="w-full navbar-bar mt-4">
+        <div className="w-full navbar-bar mt-4">
           <div className="flex flex-row items-center justify-start mb-4 ml-4">
             <NavTitle />
           </div>

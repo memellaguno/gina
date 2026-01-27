@@ -8,11 +8,13 @@ import { Inter } from "next/font/google";
 import { draftMode } from "next/headers";
 import { VisualEditing, toPlainText } from "next-sanity";
 import { Toaster } from "sonner";
+
 // import { Analytics } from "@vercel/analytics/react";
 
 import DraftModeToast from "@/components/DraftModeToast";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import RevealOnScroll from "@/components/RevealOnScroll";
 import { LiveErrorBoundary } from "@/components/LiveErrorBoundary";
 import * as demo from "@/sanity/lib/demo";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
@@ -88,7 +90,7 @@ export default async function RootLayout({
   const { isEnabled: isDraftMode } = await draftMode();
 
   const navLinks = sanityFetch({ query: GET_NAV_LINKS });
-
+  console.log("LAYOUT ACTIVO");
   console.log({ draftMode: isDraftMode });
   return (
     <html
@@ -96,6 +98,7 @@ export default async function RootLayout({
       className={`bg-white text-black ${modale.variable} ${flecham.variable} font-sans`}
     >
       <body className="font-body">
+        <RevealOnScroll />
         <section className="">
           <Toaster />
           {isDraftMode && (

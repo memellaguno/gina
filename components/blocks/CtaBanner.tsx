@@ -33,12 +33,12 @@ export default function CtaBanner({ block, lang = "es" }: Props) {
     <section className={cn("w-full px-8", styleClasses[style as keyof typeof styleClasses])}>
       <div className="mx-auto flex w-full max-w-[1900px] flex-col items-center text-center">
         {eyebrow && style !== "quote" && (
-          <p className="mb-4 text-sm font-medium uppercase lg:text-base">
+          <p className="mb-4 text-sm font-medium uppercase lg:text-base reveal">
             {eyebrow}
           </p>
         )}
         {heading && (
-          <h2 className="mb-4 font-display text-4xl uppercase md:text-5xl lg:text-6xl xl:text-7xl">
+          <h2 className="mb-4 font-display text-4xl uppercase md:text-5xl lg:text-6xl xl:text-7xl reveal">
             {heading.split("\n").map((line, i) => (
               <span key={i}>
                 {line}
@@ -48,7 +48,7 @@ export default function CtaBanner({ block, lang = "es" }: Props) {
           </h2>
         )}
         {subheading && style !== "quote" && (
-          <p className="mb-8 max-w-lg text-lg md:text-xl lg:text-1xl">
+          <p className="mb-8 max-w-lg text-lg md:text-xl lg:text-1xl reveal">
             {subheading.split("\n").map((line, i) => (
               <span key={i}>
                 {line}

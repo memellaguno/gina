@@ -35,12 +35,12 @@ export default function HeroHome({ block, lang = "es" }: Props) {
           {/* Content */}
           <div className="heroindex-content">
             {tagline && (
-              <p className="mb-8 text-sm font-medium text-white lg:text-base text-center">
+              <p className="mb-8 text-sm font-medium text-white lg:text-base text-center reveal">
                 {tagline}
               </p>
             )}
             {heading && (
-              <h1 className="max-w-2xl font-display text-5xl uppercase text-white md:text-6xl lg:text-7xl text-center">
+              <h1 className="max-w-2xl font-display text-5xl uppercase text-white md:text-6xl lg:text-7xl text-center reveal">
                 {heading.split("\n").map((line, i) => (
                   <span key={i}>
                     {line}

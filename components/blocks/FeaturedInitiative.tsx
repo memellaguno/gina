@@ -35,17 +35,17 @@ export default function FeaturedInitiative({ block, lang = "es" }: Props) {
               {/* Text Content */}
               <div className="flex flex-col justify-center">
                 {eyebrow && (
-                  <p className="mb-4 text-sm font-medium text-primary lg:text-base">
+                  <p className="mb-4 text-sm font-medium text-primary lg:text-base reveal">
                     {eyebrow}
                   </p>
                 )}
                 {title && (
-                  <h2 className="mb-4 font-display text-4xl uppercase text-primary md:text-5xl lg:text-6xl">
+                  <h2 className="mb-4 font-display text-4xl uppercase text-primary md:text-5xl lg:text-6xl reveal">
                     {title}
                   </h2>
                 )}
                 {description && (
-                  <p className="mb-6 max-w-md text-lg md:text-1xl lg:text-3xl">
+                  <p className="mb-6 max-w-md text-lg md:text-1xl lg:text-3xl reveal">
                     {description}
                   </p>
                 )}
@@ -53,7 +53,7 @@ export default function FeaturedInitiative({ block, lang = "es" }: Props) {
                 {buttonText && block.link && (
                   <ResolvedLink
                     link={block.link}
-                    className="inline-flex w-fit border border-primary bg-primary px-6 py-2 text-sm font-medium uppercase text-white transition-colors hover:opacity-90"
+                    className="inline-flex w-fit border border-primary bg-primary px-6 py-2 text-sm font-medium uppercase text-white transition-colors hover:opacity-90 reveal"
                   >
                     {buttonText}
                   </ResolvedLink>
@@ -65,7 +65,7 @@ export default function FeaturedInitiative({ block, lang = "es" }: Props) {
                 {block.image?.asset?._ref && (                    
                     <img
                       src={urlForImage(block.image)?.url()}
-                      className="w-full h-auto object-cover"
+                      className="w-full h-auto object-cover reveal"
                       alt=""
                     />
                 )}
