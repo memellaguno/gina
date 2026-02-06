@@ -1,32 +1,38 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function RevealOnScroll() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const reveals = document.querySelectorAll(".reveal");
 
-    function revealOnScroll() {
+    const revealNow = () => {
       const windowHeight = window.innerHeight;
       reveals.forEach((el) => {
         const elementTop = el.getBoundingClientRect().top;
-        if (elementTop < windowHeight * 0.85) {
+
+        if (elementTop < windowHeight * 0.9) {
           el.classList.add("visible");
         }
       });
     }
 
-    window.addEventListener("scroll", revealOnScroll);
-    window.addEventListener("load", revealOnScroll);
+    // 🔥 esperar a que el DOM de la página esté pintado
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        revealNow();
+      });
+    });
 
-    // Initial check
-    revealOnScroll();
+    window.addEventListener("scroll", revealNow);
 
     return () => {
-      window.removeEventListener("scroll", revealOnScroll);
-      window.removeEventListener("load", revealOnScroll);
+      window.removeEventListener("scroll", revealNow);
     };
-  }, []);
+  }, [pathname]); // 👈 clave
 
   return null;
 }
