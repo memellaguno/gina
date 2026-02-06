@@ -1,48 +1,50 @@
-import {
-  CAPTION_DESCRIPTION,
-  HEADING_DESCRIPTION,
-  TEXT_DESCRIPTION,
-} from "@/sanity/lib/constants";
 import { formatString } from "@/sanity/lib/helpers";
+import { englishFieldset } from "@/sanity/lib/localizedFields";
 import { Contact2 } from "lucide-react";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "contactBlock",
   type: "object",
+  fieldsets: [englishFieldset],
   fields: [
+    // Spanish fields (primary)
     defineField({
       name: "heading",
+      title: "Heading (ES)",
       type: "string",
-      description: HEADING_DESCRIPTION,
+      initialValue: "CONTACTO",
     }),
     defineField({
-      name: "caption",
-      type: "string",
-      description: CAPTION_DESCRIPTION,
-    }),
-    defineField({
-      name: "text",
+      name: "description",
+      title: "Description (ES)",
       type: "text",
-      description: TEXT_DESCRIPTION,
       rows: 3,
     }),
+    // English fields
     defineField({
-      name: "image",
-      type: "image",
-      description: "Image for the contact block",
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        defineField({
-          name: "alt",
-          type: "string",
-          description: "Alt text for the image",
-          initialValue: "Contact Block Image",
-        }),
-      ],
+      name: "headingEn",
+      title: "Heading (EN)",
+      type: "string",
+      fieldset: "english",
+      initialValue: "CONTACT",
     }),
+    defineField({
+      name: "descriptionEn",
+      title: "Description (EN)",
+      type: "text",
+      rows: 3,
+      fieldset: "english",
+    }),
+    // Show contact form
+    defineField({
+      name: "showForm",
+      title: "Show Contact Form",
+      type: "boolean",
+      initialValue: true,
+      description: "Display the contact form",
+    }),
+    // Contact info to display
     defineField({
       name: "contactInfo",
       title: "Contact Information",
@@ -50,35 +52,37 @@ export default defineType({
       fields: [
         defineField({
           name: "email",
-          type: "object",
-          fields: [
-            defineField({
-              name: "email",
-              type: "string",
-              description: "Contact email address",
-            }),
-            defineField({
-              name: "label",
-              type: "string",
-              description: "Label for the email address",
-            }),
-          ],
+          title: "Email",
+          type: "string",
+          description: "Contact email to display (form submissions go to Settings email)",
         }),
         defineField({
-          name: "email2",
-          type: "object",
-          fields: [
-            defineField({
-              name: "email",
-              type: "string",
-              description: "Contact email address",
-            }),
-            defineField({
-              name: "label",
-              type: "string",
-              description: "Label for the email address",
-            }),
-          ],
+          name: "phone",
+          title: "Phone",
+          type: "string",
+        }),
+        defineField({
+          name: "address",
+          title: "Address",
+          type: "text",
+          rows: 2,
+        }),
+      ],
+    }),
+    // Optional image
+    defineField({
+      name: "image",
+      type: "image",
+      description: "Optional image for the contact block",
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        defineField({
+          name: "alt",
+          type: "string",
+          title: "Alt text",
+          initialValue: "Image",
         }),
       ],
     }),

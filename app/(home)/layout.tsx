@@ -57,22 +57,22 @@ export async function generateMetadata(): Promise<Metadata> {
 const modale = localFont({
   src: [
     {
-      path: '../fonts/modale-reg.woff2',
-      weight: '400', // Regular
+      path: '../fonts/ModaleAntiqueWeb-Regular.woff2',
+      weight: '400',
       style: 'normal',
     },
     {
-      path: '../fonts/modale-med.woff2',
-      weight: '500', // Medium
+      path: '../fonts/ModaleAntiqueWeb-Medium.woff2',
+      weight: '500',
       style: 'normal',
     },
   ],
-  variable: '--font-modale', // Optional: for CSS variables
+  variable: '--font-modale',
   display: "swap",
 });
 
 const flecham = localFont({
-  src: "../fonts/flecham-reg.woff2",
+  src: "../fonts/FlechaM-Regular.woff2",
   variable: "--font-flecham",
   display: "swap",
 });
