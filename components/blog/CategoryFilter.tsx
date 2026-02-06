@@ -1,20 +1,13 @@
 "use client";
 
+import { categories } from "@/lib/categories";
+
 type CategoryFilterProps = {
   activeFilter: string;
   onFilterChange: (filter: string) => void;
   lang?: "es" | "en";
   posts: { category: string }[];
 };
-
-const categories = [
-  { value: "all", labelEs: "TODOS", labelEn: "ALL" },
-  { value: "tips", labelEs: "TIPS", labelEn: "TIPS" },
-  { value: "insights", labelEs: "INSIGHTS", labelEn: "INSIGHTS" },
-  { value: "reflections", labelEs: "REFLEXIONES", labelEn: "REFLECTIONS" },
-  { value: "talks", labelEs: "CHARLAS", labelEn: "TALKS" },
-  { value: "news", labelEs: "NOTICIAS", labelEn: "NEWS" },
-];
 
 export default function CategoryFilter({
   activeFilter,

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { urlForImage } from "@/sanity/lib/utils";
 import { format, parseISO } from "date-fns";
 import { es, enUS } from "date-fns/locale";
+import { getCategoryLabel } from "@/lib/categories";
 
 type BlogCardProps = {
   post: {
@@ -45,7 +46,7 @@ export default function BlogCard({ post, lang = "es", isLarge = false }: BlogCar
       />
       <div className="blog-info">
         <span className="lg:text-1xl">
-          <b className="lg:text-1xl">{post.category?.toUpperCase()}</b>
+          <b className="lg:text-1xl">{getCategoryLabel(post.category, lang)}</b>
           {formattedDate && <span>&nbsp;&nbsp;&nbsp;&nbsp;{formattedDate}</span>}
         </span>
         <p className="font-display text-primary md:text-1xl lg:text-3xl">

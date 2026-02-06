@@ -3,6 +3,7 @@ import Link from "next/link";
 import { urlForImage } from "@/sanity/lib/utils";
 import { format, parseISO } from "date-fns";
 import { es, enUS } from "date-fns/locale";
+import { getCategoryLabel } from "@/lib/categories";
 import CustomPortableText from "@/components/PortableText";
 
 type PostDetailProps = {
@@ -74,7 +75,7 @@ export default function PostDetail({ post, lang = "es" }: PostDetailProps) {
           {/* Header: Category + Title (centered) */}
           <div className="entry-header flex flex-col justify-center items-center">
             <span className="entry-category lg:text-1xl">
-              {post.category?.toUpperCase()}
+              {getCategoryLabel(post.category, lang)}
             </span>
             <h1 className="entry-title font-display text-primary text-3xl md:text-4xl lg:text-5xl uppercase">
               {title}
