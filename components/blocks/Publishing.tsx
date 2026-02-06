@@ -19,20 +19,20 @@ export default function Publishing({ block, lang = "es" }: Props) {
   if (!books.length) return null;
 
   return (
-    <section className="w-full bg-muted py-12 md:py-20">
+    <section className="w-full bg-muted py-12 md:py-20 intro-container">
       <div className="mx-auto w-full max-w-[1400px] px-4 md:px-8">
         {heading && (
-          <h2 className="mb-4 text-center font-display text-3xl uppercase text-secondary md:text-4xl lg:text-5xl">
+          <h2 className="mb-4 text-center font-display uppercase text-primary text-5xl md:text-6xl lg:text-7xl">
             {heading}
           </h2>
         )}
         {description && (
-          <p className="mb-12 text-center text-lg text-foreground/70 md:text-xl">
+          <p className="mb-12 text-center text-lg text-foreground/70 md:text-xl max-w-2xl margin-auto">
             {description}
           </p>
         )}
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mt-12">
           {books.map((book) => {
             const title =
               lang === "en" && book.titleEn ? book.titleEn : book.title;
@@ -57,25 +57,23 @@ export default function Publishing({ block, lang = "es" }: Props) {
                   </div>
                 )}
                 {title && (
-                  <h3 className="mb-2 text-xl font-medium text-secondary md:text-2xl">
+                  <h3 className="mb-2 text-xl font-display font-medium text-primary md:text-2xl">
                     {title}
                   </h3>
                 )}
                 {subtitle && (
-                  <p className="mb-2 text-base text-foreground/70">{subtitle}</p>
+                  <p className="mb-2 text-xl font-display font-medium text-primary md:text-2xl">{subtitle}</p>
                 )}
-                {publisher && (
-                  <p className="mb-2 text-sm text-foreground/60">{publisher}</p>
+                {publisher && book.year && (
+                  <p className="mb-2 text-sm font-medium uppercase lg:text-1xl">{publisher}, {book.year}</p>
                 )}
-                {book.year && (
-                  <p className="mb-4 text-sm text-foreground/60">{book.year}</p>
-                )}
+               
                 {book.link && (
                   <Link
                     href={book.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-auto border border-secondary px-6 py-2 text-sm font-medium uppercase text-secondary transition-colors hover:bg-secondary hover:text-white"
+                    className="mt-auto border border-primary px-6 py-2 text-sm font-medium uppercase text-secondary transition-colors hover:bg-secondary hover:text-white"
                   >
                     {lang === "en" ? "Learn More" : "Más información"}
                   </Link>
