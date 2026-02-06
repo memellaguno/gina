@@ -23,6 +23,7 @@ export default defineType({
           { title: "Speaking CTA", value: "speaking" },
           { title: "Newsletter", value: "newsletter" },
           { title: "Quote", value: "quote" },
+          { title: "Contact", value: "contact" },
         ],
       },
       initialValue: "speaking",
