@@ -1,3 +1,4 @@
+"use client";
 import BlockContainer from "../BlockContainer";
 import { Image } from "next-sanity/image";
 import { urlForImage } from "@/sanity/lib/utils";
@@ -16,54 +17,57 @@ export default function HeroAbout({ block, lang = "es" }: Props) {
   const introText = lang === "en" && block.introTextEn ? block.introTextEn : block.introText;
 
   return (
-    <section className="w-full bg-muted">
-      <div className="mx-auto w-full max-w-[1900px] px-4 py-12 md:px-8 md:py-20">
-        <div className="grid gap-8 md:grid-cols-2 md:gap-12 lg:gap-16">
+    <section className="w-full hero section bg-muted">
+      <div className="mx-auto w-full max-w-[1900px] px-4 py-12 md:px-8 md:py-12 pb-0">
+        
           {/* Text Content */}
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center align-center">
             {tagline && (
-              <p className="mb-4 text-sm font-medium text-primary lg:text-base">
+              <h4 className="text-sm reveal uppercase mb-4 text-primary font-medium lg:text-1xl">
                 {tagline}
-              </p>
+              </h4>
             )}
             {heading && (
-              <h1 className="mb-6 font-display text-4xl text-primary md:text-5xl lg:text-6xl">
+              <h1 className="font-display text-primary mb-8 text-5xl md:text-6xl lg:text-7xl mt-4 max-w-5xl reveal">
                 {heading}
               </h1>
             )}
-            {introText && (
-              <p className="max-w-lg text-lg leading-relaxed text-primary md:text-xl">
-                {introText}
-              </p>
-            )}
+            
           </div>
 
           {/* Image */}
-          <div className="relative">
-            {block.image?.asset?._ref && (
-              <div className="relative aspect-[3/4] overflow-hidden">
-                <Image
-                  src={urlForImage(block.image)?.url() || ""}
-                  alt={block.image.alt || "Image"}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            )}
 
-            {/* Decorative Dots */}
-            {block.showDecorativeDots && (
-              <div className="absolute -bottom-4 -right-4 grid grid-cols-4 gap-2">
-                {Array.from({ length: 16 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="h-2 w-2 rounded-full bg-secondary"
-                  />
-                ))}
-              </div>
+          <div className="hero-image zoom-in mb-12">
+            {block.image?.asset?._ref && (
+              <div
+                className="hero-image-container reveal"
+                style={{
+                  backgroundImage: `url(${urlForImage(block.image)?.url() || ""})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
+              />
             )}
+            <div className="dots">
+              {Array.from({ length: 18 }).map((_, i) => (
+                <span
+                  key={i}
+                  className="dot"
+                  style={{ "--i": i + 1 } as React.CSSProperties}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+          
+          {introText && (
+          <div className="w-full text-center flex items-center justify-center intro-container py-10 mt-6 pb-0">
+            <h3 className="intro text-primary text-2xl md:text-4xl max-w-3xl reveal">
+              {introText}
+            </h3>
+          </div>
+          )}
+
       </div>
     </section>
   );

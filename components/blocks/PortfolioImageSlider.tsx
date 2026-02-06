@@ -76,6 +76,7 @@ export default function PortfolioImageSlider({ images }: Props) {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [activeImage]);
 
+
   return (
     <>
       {/* Slider */}
@@ -110,22 +111,23 @@ export default function PortfolioImageSlider({ images }: Props) {
             className="relative h-[160px] flex-shrink-0 md:h-[220px] lg:h-[20vw] transition-transform duration-300 hover:scale-[1.01]"
           >
             <img
-              src={urlForImage(img.image)?.url() || ""}
+              src={urlForImage(img.image)?.url() || urlForImage(img)?.url()}
               alt={img.image?.alt || img.caption || ""}
               className="h-full w-auto max-w-none object-cover "
               draggable={false}
               onClick={() =>
                 !isDragging &&
                 setActiveImage({
-                  src: urlForImage(img.image)?.url() || "",
+                  src: urlForImage(img.image)?.url() || urlForImage(img)?.url(),
                   alt: img.caption,
                 })
               }
             />
-            
+            {img.caption && (
             <div className="absolute bottom-0 left-0 right-0 bg-black/50 p-2 text-sm text-white">
               {img.caption}
             </div>
+            )}
             
           </div>
         ))}
@@ -168,7 +170,7 @@ export default function PortfolioImageSlider({ images }: Props) {
             <div className="absolute bottom-0 left-0 right-0 bg-black/50 p-2 text-sm text-white">
               {activeImage.alt}
             </div>
-            
+
           </div>
         </div>
       )}

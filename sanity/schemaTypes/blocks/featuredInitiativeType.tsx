@@ -13,6 +13,19 @@ export default defineType({
     englishFieldset,
   ],
   fields: [
+    defineField({
+      name: "style",
+      title: "Style",
+      type: "string",
+      fieldset: "settings",
+      options: {
+        list: [
+          { title: "Home", value: "home" },
+          { title: "About", value: "about" },
+        ],
+      },
+      initialValue: "home",
+    }),
     // Spanish
     defineField({
       name: "eyebrow",
