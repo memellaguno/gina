@@ -49,7 +49,7 @@ export default function BlogCard({ post, lang = "es", isLarge = false }: BlogCar
           <b className="lg:text-1xl">{getCategoryLabel(post.category, lang)}</b>
           {formattedDate && <span>&nbsp;&nbsp;&nbsp;&nbsp;{formattedDate}</span>}
         </span>
-        <p className="font-display text-primary md:text-1xl lg:text-3xl">
+        <p className="text-primary md:text-1xl lg:text-3xl">
           {title}
         </p>
       </div>

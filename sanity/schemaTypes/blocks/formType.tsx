@@ -20,11 +20,28 @@ export default defineType({
     defineField({
       name: "heading",
       type: "string",
+      description: "Title from left side",
+    }),
+    defineField({
+      name: "subheading",
+      type: "string",
+      description: "Subtitle from left side",
+    }),
+    defineField({
+      name: "text1",
+      type: "text",
+      description: "Text from left side",
+      rows: 2,
+    }),
+    defineField({
+      name: "email",
+      type: "string",
+      description: "Email to receive messages",
     }),
     defineField({
       name: "text",
       type: "text",
-      description: "Optional text below heading",
+      description: "Text from right side",
       rows: 2,
     }),
     defineField({

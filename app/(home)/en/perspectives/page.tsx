@@ -23,7 +23,7 @@ export default async function PerspectivesPage() {
         {/* Hero Section */}
         <section className="w-full hero section">
           <div className="mx-auto w-full max-w-[1900px] px-4 py-6 md:px-8 md:py-10 pb-0 herochild">
-            <h1 className="font-display text-secondary mb-8 text-5xl md:text-6xl lg:text-7xl mt-4 max-w-3xl">
+            <h1 className="font-display text-primary mb-8 text-5xl md:text-6xl lg:text-7xl mt-4 max-w-3xl">
               CONVERSATIONS<br /> THAT INSPIRE.
             </h1>
           </div>

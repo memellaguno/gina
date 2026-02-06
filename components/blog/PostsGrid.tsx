@@ -50,7 +50,7 @@ export default function PostsGrid({ posts, lang = "es" }: PostsGridProps) {
   return (
     <>
       <section className="w-full section">
-        <div className="mx-auto w-full max-w-[1900px] px-4 py-6 md:px-8 md:py-10 pb-0">
+        <div className="mx-auto w-full max-w-[1900px] px-4 py-6 md:px-8 md:py-10 pb-0 pt-0">
           <CategoryFilter
             activeFilter={activeFilter}
             onFilterChange={handleFilterChange}
