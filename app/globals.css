@@ -183,6 +183,22 @@ body{color: hsl(var(--foreground))}
     border-left: 1px solid hsl(var(--primary));
     border-right: 1px solid hsl(var(--primary));
 }
+
+.send-btn {
+    background: none;
+    border: 1px solid hsl(var(--primary));
+    cursor: pointer;
+    align-self: flex-start;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    justify-content: space-between;
+}
+.send-btn:hover svg path {
+    stroke: #fff;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(40px);
