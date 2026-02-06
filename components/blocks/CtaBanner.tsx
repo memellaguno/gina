@@ -93,7 +93,7 @@ export default function CtaBanner({ block, lang = "es" }: Props) {
               style === "speaking"
                 ? "border-white text-white hover:bg-white hover:text-primary"
                 //: "border-secondary text-secondary hover:bg-secondary hover:text-white"
-                : "text-secondary opacity-90 hover:opacity-100"
+                : "text-primary opacity-90 hover:opacity-100"
             )}
           >
             {buttonText}
