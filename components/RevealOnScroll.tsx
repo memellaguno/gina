@@ -1,28 +1,39 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function RevealOnScroll() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const reveals = document.querySelectorAll<HTMLElement>(".reveal");
 
-    const revealOnScroll = () => {
+    const revealNow = () => {
       const windowHeight = window.innerHeight;
 
       reveals.forEach((el) => {
         const elementTop = el.getBoundingClientRect().top;
 
-        if (elementTop < windowHeight * 0.85) {
+        if (elementTop < windowHeight * 0.9) {
           el.classList.add("visible");
         }
       });
     };
 
-    revealOnScroll();
-    window.addEventListener("scroll", revealOnScroll);
+    // 🔥 esperar a que el DOM de la página esté pintado
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        revealNow();
+      });
+    });
 
-    return () => window.removeEventListener("scroll", revealOnScroll);
-  }, []);
+    window.addEventListener("scroll", revealNow);
+
+    return () => {
+      window.removeEventListener("scroll", revealNow);
+    };
+  }, [pathname]); // 👈 clave
 
   return null;
 }

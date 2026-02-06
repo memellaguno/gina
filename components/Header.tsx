@@ -140,7 +140,7 @@ export default async function Header({ headerTheme, lang = "es" }: HeaderProps) 
               {navigation.map((item) => {
                 return (
                   <ResolvedLink
-                    className="hover:text-primary"
+                    className="text-accent-foreground hover:text-primary"
                     key={item._key}
                     link={item.link}
                   >

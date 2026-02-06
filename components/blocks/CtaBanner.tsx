@@ -27,6 +27,7 @@ export default function CtaBanner({ block, lang = "es" }: Props) {
     speaking: "bg-primary text-white py-24",
     newsletter: "section bg-secondary-child text-white py-8",
     quote: "bg-muted text-secondary py-24",
+    contact: "bg-muted text-primary py-24",
   };
 
   return (
@@ -91,7 +92,8 @@ export default function CtaBanner({ block, lang = "es" }: Props) {
               "inline-flex items-center gap-2 border px-6 py-2 text-sm uppercase transition-colors",
               style === "speaking"
                 ? "border-white text-white hover:bg-white hover:text-primary"
-                : "border-secondary text-secondary hover:bg-secondary hover:text-white"
+                //: "border-secondary text-secondary hover:bg-secondary hover:text-white"
+                : "text-secondary opacity-90 hover:opacity-100"
             )}
           >
             {buttonText}

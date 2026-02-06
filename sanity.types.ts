@@ -215,7 +215,7 @@ export type ImageSlider = {
 
 export type CtaBanner = {
   _type: "ctaBanner";
-  style?: "speaking" | "newsletter" | "quote";
+  style?: "speaking" | "newsletter" | "quote" | "contact";
   eyebrow?: string;
   heading?: string;
   subheading?: string;
