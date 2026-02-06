@@ -48,7 +48,7 @@ export default async function Header({ headerTheme, lang = "es" }: HeaderProps) 
   function NavTitle() {
     if (brandAssets?.primaryLogo) {
       return (
-        <div className="h-7">
+        <div >
           <Link href="/">
             <Image
               width={getImageDimensions(brandAssets.primaryLogo.imageUrl).width}
@@ -57,7 +57,7 @@ export default async function Header({ headerTheme, lang = "es" }: HeaderProps) 
               }
               src={brandAssets.primaryLogo.imageUrl}
               className={cn(
-                "h-full w-auto",
+                "h-full w-auto logotop",
                 headerTheme === "light" && "",
                 headerTheme === "dark" && "",
                 headerTheme === "transparent",
