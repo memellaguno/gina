@@ -11,8 +11,11 @@ const postFields = /* groq */ `
   _id,
   "status": select(_originalId in path("drafts.**") => "draft", "published"),
   "title": coalesce(title, "Untitled"),
+  titleEn,
   "slug": slug.current,
+  category,
   excerpt,
+  excerptEn,
   coverImage,
   "date": coalesce(date, _updatedAt),
   "author": author->{firstName, lastName, picture},
@@ -343,12 +346,19 @@ export const morePostsQuery = defineQuery(`
 export const postQuery = defineQuery(`
   *[_type == "post" && slug.current == $slug] [0] {
     content[]{
-    ...,
-    markDefs[]{
       ...,
-      ${linkFields}
-    }
-  },
+      markDefs[]{
+        ...,
+        ${linkFields}
+      }
+    },
+    contentEn[]{
+      ...,
+      markDefs[]{
+        ...,
+        ${linkFields}
+      }
+    },
     ${postFields}
   }
 `);
@@ -363,7 +373,7 @@ export const pagesSlugs = defineQuery(`
   {"slug": slug.current}
 `);
 
-export const GLOBAL_SETTINGS_QUERY = groq`  
+export const GLOBAL_SETTINGS_QUERY = groq`
   {"settings": *[_type == "settings"][0]{
     ...,
     brandAssets {
@@ -377,6 +387,10 @@ export const GLOBAL_SETTINGS_QUERY = groq`
     }
   }}
 `;
+
+export const CONTACT_EMAIL_QUERY = defineQuery(`
+  *[_type == "settings"][0].contactEmail
+`);
 
 // const PAGE_BUILDER_CONTENT_QUERY = defineQuery(`
 //   content[] {

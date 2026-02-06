@@ -7,11 +7,10 @@ export default function RevealOnScroll() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const reveals = document.querySelectorAll<HTMLElement>(".reveal");
+    const reveals = document.querySelectorAll(".reveal");
 
     const revealNow = () => {
       const windowHeight = window.innerHeight;
-
       reveals.forEach((el) => {
         const elementTop = el.getBoundingClientRect().top;
 
@@ -19,7 +18,7 @@ export default function RevealOnScroll() {
           el.classList.add("visible");
         }
       });
-    };
+    }
 
     // 🔥 esperar a que el DOM de la página esté pintado
     requestAnimationFrame(() => {

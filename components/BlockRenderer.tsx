@@ -32,6 +32,7 @@ import AwardsAccordion from "@/components/blocks/AwardsAccordion";
 import InitiativesAccordion from "@/components/blocks/InitiativesAccordion";
 import Publishing from "@/components/blocks/Publishing";
 import Quote from "@/components/blocks/Quote";
+import ContactBlock from "@/components/blocks/ContactBlock";
 
 type BlocksType = {
   [key: string]: React.FC<any>;
@@ -64,6 +65,7 @@ const Blocks: BlocksType = {
   initiativesAccordion: InitiativesAccordion,
   publishing: Publishing,
   quote: Quote,
+  contactBlock: ContactBlock,
   // Existing blocks
   callToAction: Cta,
   infoSection: Info,

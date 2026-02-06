@@ -7449,6 +7449,13 @@
         },
         "optional": false
       },
+      "titleEn": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "slug": {
         "type": "objectAttribute",
         "value": {
@@ -7457,15 +7464,43 @@
         },
         "optional": false
       },
-      "content": {
+      "category": {
         "type": "objectAttribute",
         "value": {
-          "type": "inline",
-          "name": "blockContent"
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "tips"
+            },
+            {
+              "type": "string",
+              "value": "insights"
+            },
+            {
+              "type": "string",
+              "value": "reflections"
+            },
+            {
+              "type": "string",
+              "value": "talks"
+            },
+            {
+              "type": "string",
+              "value": "news"
+            }
+          ]
+        },
+        "optional": false
+      },
+      "excerpt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
         },
         "optional": true
       },
-      "excerpt": {
+      "excerptEn": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
@@ -7540,6 +7575,22 @@
           }
         },
         "optional": false
+      },
+      "content": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "blockContent"
+        },
+        "optional": true
+      },
+      "contentEn": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "blockContent"
+        },
+        "optional": true
       },
       "date": {
         "type": "objectAttribute",

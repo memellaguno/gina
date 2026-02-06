@@ -34,7 +34,6 @@ export const structure = (S: any, context: any) =>
             "header",
             "assist.instruction.context",
             "media.tag",
-            "post",
             "products",
           ].includes(listItem.getId()),
       ),
