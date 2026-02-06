@@ -54,6 +54,8 @@ export function linkResolver(link: any | undefined) {
   switch (link.linkType) {
     case "href":
       return link.href || null;
+    case "route":
+      return link.route || null;
     case "page":
       if (link?.page) {
         let path =

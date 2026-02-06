@@ -17,9 +17,24 @@ export default defineType({
         list: [
           { title: "URL", value: "href" },
           { title: "Page", value: "page" },
+          { title: "Route", value: "route" },
         ],
         layout: "radio",
       },
+    }),
+    defineField({
+      name: "route",
+      title: "Route Path",
+      description: "Internal route path, e.g. /perspectives or /en/perspectives",
+      type: "string",
+      hidden: ({ parent }) => parent?.linkType !== "route",
+      validation: (Rule) =>
+        Rule.custom((value, context: any) => {
+          if (context.parent?.linkType === "route" && !value) {
+            return "Route path is required when Link Type is Route";
+          }
+          return true;
+        }),
     }),
     defineField({
       name: "href",
