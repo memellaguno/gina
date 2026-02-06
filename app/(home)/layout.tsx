@@ -90,7 +90,6 @@ export default async function RootLayout({
   const { isEnabled: isDraftMode } = await draftMode();
 
   const navLinks = sanityFetch({ query: GET_NAV_LINKS });
-  console.log("LAYOUT ACTIVO");
   console.log({ draftMode: isDraftMode });
   return (
     <html

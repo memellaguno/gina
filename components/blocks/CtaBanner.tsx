@@ -24,15 +24,15 @@ export default function CtaBanner({ block, lang = "es" }: Props) {
   const style = stegaClean(block.style) || "speaking";
 
   const styleClasses = {
-    speaking: "bg-primary text-white py-24",
-    newsletter: "section bg-secondary-child text-white py-8",
-    quote: "bg-muted text-secondary py-24",
+    speaking: "bg-primary text-white py-24 text-center",
+    newsletter: "section bg-secondary-child text-white py-8 text-center",
+    quote: "bg-muted text-secondary py-24 text-center",
     contact: "bg-muted text-primary py-24",
   };
 
   return (
     <section className={cn("w-full px-8", styleClasses[style as keyof typeof styleClasses])}>
-      <div className="mx-auto flex w-full max-w-[1900px] flex-col items-center text-center">
+      <div className="mx-auto flex w-full max-w-[1900px] flex-col items-center ">
         {eyebrow && style !== "quote" && (
           <p className="mb-4 text-sm font-medium uppercase lg:text-base reveal">
             {eyebrow}
