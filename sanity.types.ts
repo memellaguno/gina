@@ -3117,7 +3117,7 @@ export type HOME_GET_PAGEQUERYResult = {
     | {
         _key: string;
         _type: "ctaBanner";
-        style?: "newsletter" | "quote" | "speaking";
+        style?: "newsletter" | "quote" | "speaking" | "contact";
         eyebrow?: string;
         heading?: string;
         subheading?: string;
@@ -9168,7 +9168,7 @@ export type GetPageQueryResult = {
     | {
         _key: string;
         _type: "ctaBanner";
-        style?: "newsletter" | "quote" | "speaking";
+        style?: "newsletter" | "quote" | "speaking" | "contact";
         eyebrow?: string;
         heading?: string;
         subheading?: string;
