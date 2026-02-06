@@ -439,6 +439,13 @@ textarea{ height: 10vw; }
 }
 textarea:focus, input:focus{ outline: none!important; }
 html{ background: hsl(var(--accent))!important }
+.justify-between {
+    justify-content: space-between;
+}
+.w-1\/4 {
+    width: calc(25% - 2em);
+}
+.margin-top-1rem{margin-top: -2.5rem;}
 
 @media (min-width: 1024px) {
     .lg\:text-1xl {
