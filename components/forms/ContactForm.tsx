@@ -30,7 +30,8 @@ const translations = {
     successTitle: "¡Mensaje enviado!",
     successMessage: "Hemos recibido tu mensaje y te contactaremos pronto.",
     errorTitle: "Error",
-    errorMessage: "Hubo un problema al enviar tu mensaje. Por favor intenta de nuevo.",
+    errorMessage:
+      "Hubo un problema al enviar tu mensaje. Por favor intenta de nuevo.",
   },
   en: {
     namePlaceholder: "Enter your name",
@@ -50,7 +51,9 @@ const translations = {
 
 export default function ContactForm({ lang = "es" }: ContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
   const t = translations[lang];
 
   const {
@@ -92,14 +95,17 @@ export default function ContactForm({ lang = "es" }: ContactFormProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div>
-        <label htmlFor="name" className="block font-medium text-gray-700 mb-2 md:text-lg">
+        <label
+          htmlFor="name"
+          className="mb-2 block font-medium text-gray-700 md:text-lg"
+        >
           {t.nameLabel}
         </label>
         <input
           type="text"
           id="name"
           placeholder={t.namePlaceholder}
-          className="w-full border-b border-gray-300 py-2 text-lg focus:border-secondary focus:outline-none transition-colors"
+          className="w-full border-b border-gray-300 py-2 text-lg transition-colors focus:border-secondary focus:outline-none"
           {...register("name")}
         />
         {errors.name && (
@@ -108,14 +114,17 @@ export default function ContactForm({ lang = "es" }: ContactFormProps) {
       </div>
 
       <div>
-        <label htmlFor="email" className="block font-medium text-gray-700 mb-2 md:text-lg">
+        <label
+          htmlFor="email"
+          className="mb-2 block font-medium text-gray-700 md:text-lg"
+        >
           {t.emailLabel}
         </label>
         <input
           type="email"
           id="email"
           placeholder={t.emailPlaceholder}
-          className="w-full border-b border-gray-300 py-2 text-lg focus:border-secondary focus:outline-none transition-colors"
+          className="w-full border-b border-gray-300 py-2 text-lg transition-colors focus:border-secondary focus:outline-none"
           {...register("email")}
         />
         {errors.email && (
@@ -124,14 +133,17 @@ export default function ContactForm({ lang = "es" }: ContactFormProps) {
       </div>
 
       <div>
-        <label htmlFor="message" className="block font-medium text-gray-700 mb-2 md:text-lg">
+        <label
+          htmlFor="message"
+          className="mb-2 block font-medium text-gray-700 md:text-lg"
+        >
           {t.messageLabel}
         </label>
         <textarea
           id="message"
           rows={4}
           placeholder={t.messagePlaceholder}
-          className="w-full border-b border-gray-300 py-2 text-lg focus:border-secondary focus:outline-none transition-colors resize-none"
+          className="w-full resize-none border-b border-gray-300 py-2 text-lg transition-colors focus:border-secondary focus:outline-none"
           {...register("message")}
         />
         {errors.message && (
@@ -157,7 +169,8 @@ export default function ContactForm({ lang = "es" }: ContactFormProps) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex items-center gap-2 border border-secondary px-8 py-3 text-secondary font-medium transition-colors hover:bg-secondary hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+          onClick={handleSubmit(onSubmit)}
+          className="inline-flex items-center gap-2 border border-secondary px-8 py-3 font-medium text-secondary transition-colors hover:bg-secondary hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isSubmitting ? t.sending : t.sendButton}
           <svg
