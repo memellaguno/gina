@@ -535,6 +535,8 @@ html{ background: hsl(var(--accent))!important }
 /* Adaptación móvil */
 @media (max-width: 700px) {
   /*.dot { width: 8px; height: 8px; }*/
+  .aboutobject .bio-grid-reverse{ display: block; }
+  .aboutobject .bio-grid-reverse div{ width: 100%; }
 }
 
 @media (min-width: 1024px) {
