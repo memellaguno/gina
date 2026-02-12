@@ -24,8 +24,8 @@ export default defineType({
     }),
     defineField({
       name: "route",
-      title: "Route Path",
-      description: "Internal route path, e.g. /perspectives or /en/perspectives",
+      title: "Route Path (ES)",
+      description: "Spanish route, e.g. /es/perspectivas or /es/videos",
       type: "string",
       hidden: ({ parent }) => parent?.linkType !== "route",
       validation: (Rule) =>
@@ -35,6 +35,13 @@ export default defineType({
           }
           return true;
         }),
+    }),
+    defineField({
+      name: "routeEn",
+      title: "Route Path (EN)",
+      description: "English route, e.g. /perspectives or /videos",
+      type: "string",
+      hidden: ({ parent }) => parent?.linkType !== "route",
     }),
     defineField({
       name: "href",

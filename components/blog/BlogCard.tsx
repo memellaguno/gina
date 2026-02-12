@@ -24,7 +24,7 @@ type BlogCardProps = {
 
 export default function BlogCard({ post, lang = "es", isLarge = false }: BlogCardProps) {
   const title = lang === "en" && post.titleEn ? post.titleEn : post.title;
-  const basePath = lang === "en" ? "/en/perspectives" : "/perspectivas";
+  const basePath = lang === "en" ? "/perspectives" : "/es/perspectivas";
   const dateLocale = lang === "en" ? enUS : es;
 
   const formattedDate = post.date

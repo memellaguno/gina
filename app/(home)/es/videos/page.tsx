@@ -1,0 +1,37 @@
+import type { Metadata } from "next";
+import { sanityFetch } from "@/sanity/lib/live";
+import { allVideosQuery } from "@/sanity/lib/queries";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import VideoGrid from "@/components/video/VideoGrid";
+
+export const metadata: Metadata = {
+  title: "Videos | Gina Diez Barroso",
+  description: "Mira nuestros videos más recientes.",
+};
+
+export default async function VideosPage() {
+  const { data: videos } = await sanityFetch({
+    query: allVideosQuery,
+  });
+
+  return (
+    <>
+      <Header headerTheme="light" lang="es" />
+
+      <main>
+        <section className="w-full hero section">
+          <div className="mx-auto w-full max-w-[1900px] px-4 py-6 md:px-8 md:py-10 pb-0 herochild">
+            <h1 className="font-display text-primary mb-8 text-5xl md:text-6xl lg:text-7xl mt-4 max-w-3xl uppercase">
+              Videos
+            </h1>
+          </div>
+        </section>
+
+        <VideoGrid videos={videos || []} lang="es" />
+      </main>
+
+      <Footer lang="es" />
+    </>
+  );
+}

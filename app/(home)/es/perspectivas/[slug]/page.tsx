@@ -28,33 +28,14 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     stega: false,
   });
 
+  const title = post?.title;
+  const description = post?.excerpt;
+
   return {
-    title: post?.title ? `${post.title} | Perspectivas` : "Perspectivas",
-    description: post?.excerpt || "",
+    title: title ? `${title} | Perspectivas` : "Perspectivas",
+    description: description || "",
   } satisfies Metadata;
 }
-
-/*export default async function PostPage(props: Props) {
-  const params = await props.params;
-  const { data: post } = await sanityFetch({
-    query: postQuery,
-    params,
-  });
-
-  if (!post?._id) {
-    return notFound();
-  }
-
-  return (
-    <>
-      <Header headerTheme="light" lang="es" />
-      <main>
-        <PostDetail post={post} lang="es" />
-      </main>
-      <Footer lang="es" />
-    </>
-  );
-}*/
 
 export default async function PostPage(props: Props) {
   const params = await props.params;
@@ -72,7 +53,6 @@ export default async function PostPage(props: Props) {
     query: POST_WITH_HOME_CTA_QUERY,
   });
 
-  //const post = result?.data?.post;
   const homeCta = home?.homeCta;
   return (
     <>

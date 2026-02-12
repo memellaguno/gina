@@ -1,13 +1,21 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Image } from "next-sanity/image";
 import { urlForImage } from "@/sanity/lib/utils";
-import { VideoGallery as VideoGalleryType } from "@/sanity.types";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { parseVideoUrl, getEmbedUrl } from "@/lib/video";
+
+type VideoRef = {
+  _id: string;
+  title?: string;
+  titleEn?: string;
+  videoUrl?: string;
+  poster?: any;
+};
 
 type Props = {
-  block: VideoGalleryType;
+  block: { videos?: VideoRef[] };
   lang?: "es" | "en";
 };
 
@@ -15,7 +23,7 @@ type Props = {
 
 export default function VideoGallery({ block, lang = "es" }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const videos = block.videos || [];
+  const videos = (block.videos || []).filter(Boolean);
 
   const isPrevDisabled = currentIndex === 0;
   const isNextDisabled = currentIndex === videos.length - 1;
@@ -43,17 +51,23 @@ export default function VideoGallery({ block, lang = "es" }: Props) {
               const title =
                 lang === "en" && video.titleEn ? video.titleEn : video.title;
 
+              const info = video.videoUrl
+                ? parseVideoUrl(video.videoUrl)
+                : null;
+              const embedSrc = info ? getEmbedUrl(info) : video.videoUrl;
+
               return (
                 <div
-                  key={video._key}
+                  key={video._id}
                   className="w-full flex-shrink-0 px-2"
                 >
                   <div className="relative aspect-video overflow-hidden rounded-lg bg-black">
-                    {video.videoUrl ? (
+                    {embedSrc ? (
                       <iframe
-                        src={video.videoUrl}
+                        src={embedSrc}
                         className="h-full w-full"
                         allowFullScreen
+                        allow="autoplay; fullscreen"
                         title={title || `Video ${index + 1}`}
                       />
                     ) : video.poster?.asset?._ref ? (
@@ -72,11 +86,6 @@ export default function VideoGallery({ block, lang = "es" }: Props) {
                       </>
                     ) : null}
                   </div>
-                  {/*title && (
-                    <p className="mt-4 text-center text-lg font-medium text-foreground">
-                      {title}
-                    </p>
-                  )*/}
                 </div>
               );
             })}
@@ -88,7 +97,7 @@ export default function VideoGallery({ block, lang = "es" }: Props) {
           <>
             <button
               onClick={goToPrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-primary p-3 transition-colors opacity-90 hover:opacity-100" 
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-primary p-3 transition-colors opacity-90 hover:opacity-100"
               aria-label="Previous video"
               style={{ visibility: isPrevDisabled ? 'hidden' : 'visible' }}
             >
@@ -108,9 +117,9 @@ export default function VideoGallery({ block, lang = "es" }: Props) {
         {/* Dots */}
         {videos.length > 1 && (
           <div className="mt-6 flex justify-center gap-2">
-            {videos.map((_, index) => (
+            {videos.map((video, index) => (
               <button
-                key={index}
+                key={video._id + "-dot"}
                 onClick={() => setCurrentIndex(index)}
                 className={`h-2.5 w-2.5 rounded-full transition-colors ${
                   index === currentIndex ? "bg-primary" : "bg-gray-300"

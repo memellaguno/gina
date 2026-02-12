@@ -37,28 +37,6 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   } satisfies Metadata;
 }
 
-/*
-export default async function PostPage(props: Props) {
-  const params = await props.params;
-  const { data: post } = await sanityFetch({
-    query: postQuery,
-    params,
-  });
-
-  if (!post?._id) {
-    return notFound();
-  }
-
-  return (
-    <>
-      <Header headerTheme="light" lang="en" />
-      <main>
-        <PostDetail post={post} lang="en" />
-      </main>
-      <Footer lang="en" />
-    </>
-  );
-}*/
 export default async function PostPage(props: Props) {
   const params = await props.params;
 
@@ -75,7 +53,6 @@ export default async function PostPage(props: Props) {
     query: POST_WITH_HOME_CTA_QUERY,
   });
 
-  //const post = result?.data?.post;
   const homeCta = home?.homeCta;
   return (
     <>
@@ -91,4 +68,3 @@ export default async function PostPage(props: Props) {
     </>
   );
 }
-

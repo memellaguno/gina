@@ -34,7 +34,7 @@ type PostDetailProps = {
 export default function PostDetail({ post, homeCta, lang = "es" }: PostDetailProps) {
   const title = lang === "en" && post.titleEn ? post.titleEn : post.title;
   const content = lang === "en" && post.contentEn ? post.contentEn : post.content;
-  const backLink = lang === "en" ? "/en/perspectives" : "/perspectivas";
+  const backLink = lang === "en" ? "/perspectives" : "/es/perspectivas";
   const backText = lang === "en" ? "Back to Perspectives" : "Volver a Perspectivas";
   const dateLocale = lang === "en" ? enUS : es;
 

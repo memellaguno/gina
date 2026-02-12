@@ -18,22 +18,9 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
-  const params = await props.params;
-  const { data: page } = await sanityFetch({
-    query: getPageQuery,
-    params,
-    stega: false,
-  });
-
-  return {
-    title: page?.name,
-    description: page?.heading,
-  } satisfies Metadata;
-}
-
 export default async function Page(props: Props) {
   const params = await props.params;
+
   const [{ data: page }] = await Promise.all([
     sanityFetch({ query: getPageQuery, params }),
   ]);
@@ -42,5 +29,5 @@ export default async function Page(props: Props) {
     return notFound();
   }
 
-  return <PageWithHeader page={page as any} lang="en" />;
+  return <PageWithHeader page={page as any} lang="es" />;
 }

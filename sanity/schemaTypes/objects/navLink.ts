@@ -7,7 +7,12 @@ export default defineType({
   fields: [
     defineField({
       name: "text",
-      title: "Navigation Text",
+      title: "Navigation Text (ES)",
+      type: "string",
+    }),
+    defineField({
+      name: "textEn",
+      title: "Navigation Text (EN)",
       type: "string",
     }),
     defineField({
