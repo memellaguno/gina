@@ -5,6 +5,8 @@ import { format, parseISO } from "date-fns";
 import { es, enUS } from "date-fns/locale";
 import { getCategoryLabel } from "@/lib/categories";
 import CustomPortableText from "@/components/PortableText";
+import { CtaBanner as CtaBannerType } from "@/sanity.types";
+import CtaBanner from "@/components/blocks/CtaBanner";
 
 type PostDetailProps = {
   post: {
@@ -25,13 +27,14 @@ type PostDetailProps = {
       picture?: any;
     };
   };
+  homeCta?: CtaBannerType;
   lang?: "es" | "en";
 };
 
-export default function PostDetail({ post, lang = "es" }: PostDetailProps) {
+export default function PostDetail({ post, homeCta, lang = "es" }: PostDetailProps) {
   const title = lang === "en" && post.titleEn ? post.titleEn : post.title;
   const content = lang === "en" && post.contentEn ? post.contentEn : post.content;
-  const backLink = lang === "en" ? "/en/perspectives" : "/perspectivas";
+  const backLink = lang === "en" ? "/perspectives" : "/es/perspectivas";
   const backText = lang === "en" ? "Back to Perspectives" : "Volver a Perspectivas";
   const dateLocale = lang === "en" ? enUS : es;
 
@@ -47,37 +50,20 @@ export default function PostDetail({ post, lang = "es" }: PostDetailProps) {
     ? `${post.author.firstName} ${post.author.lastName}`.toUpperCase()
     : "";
 
+  //console.log("CTA STYLE:", JSON.stringify(homeCta, null, 2));
+  //console.log("CTA DATA:", homeCta); 
+
   return (
     <section className="w-full section">
       <div className="mx-auto w-full max-w-[1900px] px-4 py-6 md:px-8 md:py-10 herochild">
         <div className="entry-real">
-          {/* Back link (top) */}
-          <Link
-            href={backLink}
-            className="mb-8 inline-flex items-center gap-2 text-sm text-gray-600 hover:text-primary"
-          >
-            <svg
-              width="18"
-              height="11"
-              viewBox="0 0 18 11"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="rotate-180"
-            >
-              <path
-                d="M17 5.31836L12.8681 10.3184M17 5.31836L12.8681 0.318359M17 5.31836L2.5828e-07 5.31836"
-                stroke="currentColor"
-              />
-            </svg>
-            {backText}
-          </Link>
-
+          
           {/* Header: Category + Title (centered) */}
           <div className="entry-header flex flex-col justify-center items-center">
             <span className="entry-category lg:text-1xl">
               {getCategoryLabel(post.category, lang)}
             </span>
-            <h1 className="entry-title font-display text-primary text-3xl md:text-4xl lg:text-5xl uppercase">
+            <h1 className="entry-title font-display text-primary text-3xl md:text-4xl lg:text-4xl uppercase">
               {title}
             </h1>
           </div>
@@ -112,7 +98,7 @@ export default function PostDetail({ post, lang = "es" }: PostDetailProps) {
           )}
 
           {/* Back link */}
-          <div className="mt-16 border-t border-gray-200 pt-8">
+          <div className="mt-8 border-t border-gray-200 pt-8">
             <Link
               href={backLink}
               className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-primary"
@@ -132,8 +118,15 @@ export default function PostDetail({ post, lang = "es" }: PostDetailProps) {
               </svg>
               {backText}
             </Link>
+            
           </div>
         </div>
+
+        {/* CTA fijo home */}
+        {homeCta && (              
+          <CtaBanner block={homeCta} lang={lang} />
+        )}
+        
       </div>
     </section>
   );

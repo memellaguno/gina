@@ -67,14 +67,15 @@ export default async function Footer({ lang = "es" }: FooterProps) {
                 {settings?.tagline || "Gina Díaz Barroso"}
               </p>
               <div className="flex flex-col">
-                {footerNavigation.map((item) => {
+                {footerNavigation.map((item: any) => {
+                  const text = lang === "en" && item.textEn ? item.textEn : item.text;
                   return (
                     <ResolvedLink
                       className="py-1 text-sm opacity-100 md:text-base hover:opacity-70"
                       key={item._key}
                       link={item.link}
                     >
-                      {item.text}
+                      {text}
                     </ResolvedLink>
                   );
                 })}
@@ -83,16 +84,17 @@ export default async function Footer({ lang = "es" }: FooterProps) {
 
             {/* Contact Block */}
             <section className="footer-links px-3">
-              <p className="text-base font-medium">Links</p>
+              <p className="text-base font-medium">{lang === "en" ? "Links" : "Enlaces"}</p>
               <div className="flex flex-col">
-                {footerNavigation.map((item) => {
+                {footerNavigation.map((item: any) => {
+                  const text = lang === "en" && item.textEn ? item.textEn : item.text;
                   return (
                     <ResolvedLink
                       className="py-1 text-sm opacity-100 md:text-base hover:opacity-70"
                       key={item._key}
                       link={item.link}
                     >
-                      {item.text}
+                      {text}
                     </ResolvedLink>
                   );
                 })}
@@ -101,10 +103,10 @@ export default async function Footer({ lang = "es" }: FooterProps) {
 
             {/* Newsletter */}
             <section className="footer-newsletter">
-              <p className="text-base font-medium">SUBSCRIBE TO OUR NEWSLETTER</p>
+              <p className="text-base font-medium">{lang === "en" ? "SUBSCRIBE TO OUR NEWSLETTER" : "SUSCRÍBETE A NUESTRO BOLETÍN"}</p>
               <form className="newsletter" action="{settings.socials.newsletter.url}">
-                <input type="email" placeholder="ENTER YOUR EMAIL"/>
-                <button className="text-underline text-primary">SEND</button>
+                <input type="email" placeholder={lang === "en" ? "ENTER YOUR EMAIL" : "INGRESA TU EMAIL"}/>
+                <button className="text-underline text-primary">{lang === "en" ? "SEND" : "ENVIAR"}</button>
               </form>
             </section>
 
@@ -112,7 +114,7 @@ export default async function Footer({ lang = "es" }: FooterProps) {
           <div className="footer-down pt-8">
             <div className="w-full">
               <div className="copyright pb-0 py-4">
-                COPYRIGHT © {new Date().getFullYear()}{" "} {settings?.tagline || "Gina Díaz Barroso"}. ALL RIGHTS RESERVED
+                COPYRIGHT © {new Date().getFullYear()}{" "} {settings?.tagline || "Gina Díaz Barroso"}. {lang === "en" ? "ALL RIGHTS RESERVED" : "TODOS LOS DERECHOS RESERVADOS"}
               </div>
               <div className="socials font-medium text-primary py-4 uppercase">
                 {/* Social Block */}

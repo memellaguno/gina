@@ -22,6 +22,7 @@ export default function CtaBanner({ block, lang = "es" }: Props) {
     lang === "en" && block.attributionEn ? block.attributionEn : block.attribution;
 
   const style = stegaClean(block.style) || "speaking";
+  //console.log(block);
 
   const styleClasses = {
     speaking: "w-full px-8 bg-primary text-white py-24 text-center",

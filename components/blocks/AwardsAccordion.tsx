@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Image } from "next-sanity/image";
+import PortfolioImageSlider from "@/components/blocks/PortfolioImageSlider";
 import { urlForImage } from "@/sanity/lib/utils";
 import { AwardsAccordion as AwardsAccordionType } from "@/sanity.types";
 import { ChevronDown } from "lucide-react";
@@ -20,10 +21,10 @@ export default function AwardsAccordion({ block, lang = "es" }: Props) {
   if (!awards.length) return null;
 
   return (
-    <section className="w-full bg-muted py-12 md:py-20">
-      <div className="mx-auto w-full max-w-[1200px] px-4 md:px-8">
+    <section className="w-full bg-muted awardscontainer py-12 md:py-20 pb-0">
+      <div className="mx-auto w-full max-w-[1900px] px-4 md:px-8">
         {heading && (
-          <h2 className="mb-12 text-center font-display text-3xl uppercase text-secondary md:text-4xl lg:text-5xl">
+          <h2 className="mb-12 text-center font-display uppercase text-primary text-5xl md:text-6xl lg:text-7xl">
             {heading}
           </h2>
         )}
@@ -39,26 +40,27 @@ export default function AwardsAccordion({ block, lang = "es" }: Props) {
             const isOpen = openIndex === index;
 
             return (
-              <div key={award._key} className="py-4">
+              <div key={award._key} className="py-8 border-t border-secondary/20">
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   className="flex w-full items-center justify-between text-left"
                 >
                   <div className="flex-1">
-                    <h3 className="text-lg font-medium text-secondary md:text-xl">
+                    <h3 className="font-display text-3xl md:text-4xl lg:text-5xl uppercase text-secondary">
                       {title}
-                    </h3>
-                    <div className="mt-1 flex items-center gap-4 text-sm text-foreground/60">
+                    </h3>                    
+
+                    <div className="mt-1 flex items-center gap-4 text-1xl lg:text-2xl font-body uppercase">
                       {organization && <span>{organization}</span>}
                       {award.year && <span>{award.year}</span>}
                     </div>
                   </div>
-                  <ChevronDown
-                    className={cn(
-                      "h-6 w-6 text-secondary transition-transform",
-                      isOpen && "rotate-180"
-                    )}
-                  />
+                  <svg className={cn(
+                        "h-10 w-10 transition-transform",
+                        isOpen && "rotate-180"
+                      )} viewBox="0 0 44 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path opacity="1" d="M0.943847 1.16601L21.9438 18.166L42.9438 1.16602" stroke="#e31c93" strokeWidth="3"/>
+                    </svg>
                 </button>
 
                 {/* Expanded Content */}
@@ -70,7 +72,7 @@ export default function AwardsAccordion({ block, lang = "es" }: Props) {
                 >
                   <div className="overflow-hidden">
                     {award.images && award.images.length > 0 && (
-                      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+                      /*<div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
                         {award.images.map((image, imgIndex) => (
                           <div
                             key={imgIndex}
@@ -86,6 +88,9 @@ export default function AwardsAccordion({ block, lang = "es" }: Props) {
                             )}
                           </div>
                         ))}
+                      </div>*/
+                      <div className="mt-8">
+                        <PortfolioImageSlider images={award.images} />
                       </div>
                     )}
                   </div>

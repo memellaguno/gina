@@ -22,6 +22,7 @@ import Image from "next/image";
 import { getImageDimensions } from "@sanity/asset-utils";
 import { cn } from "@/lib/utils";
 import ResolvedLink from "./ResolvedLink";
+import LanguageToggle from "./LanguageToggle";
 
 type HeaderProps = {
   headerTheme: string;
@@ -48,7 +49,7 @@ export default async function Header({ headerTheme, lang = "es" }: HeaderProps) 
   function NavTitle() {
     if (brandAssets?.primaryLogo) {
       return (
-        <div className="h-7">
+        <div >
           <Link href="/">
             <Image
               width={getImageDimensions(brandAssets.primaryLogo.imageUrl).width}
@@ -57,7 +58,7 @@ export default async function Header({ headerTheme, lang = "es" }: HeaderProps) 
               }
               src={brandAssets.primaryLogo.imageUrl}
               className={cn(
-                "h-full w-auto",
+                "h-full w-auto logotop",
                 headerTheme === "light" && "",
                 headerTheme === "dark" && "",
                 headerTheme === "transparent",
@@ -74,6 +75,12 @@ export default async function Header({ headerTheme, lang = "es" }: HeaderProps) 
         </Link>
       );
     }
+  }
+
+  // Helper to get bilingual nav text
+  function getNavText(item: any) {
+    if (lang === "en" && item.textEn) return item.textEn;
+    return item.text;
   }
 
   return (
@@ -112,7 +119,7 @@ export default async function Header({ headerTheme, lang = "es" }: HeaderProps) 
                     {/* <SheetDescription>Here it is</SheetDescription> */}
                   </SheetHeader>
                   <div className="flex flex-col pt-8 text-3xl text-primary">
-                    {navigation.map((item) => {
+                    {navigation.map((item: any) => {
                       return (
                         <div
                           key={item._key}
@@ -120,12 +127,17 @@ export default async function Header({ headerTheme, lang = "es" }: HeaderProps) 
                         >
                           <SheetClose asChild>
                             <ResolvedLink link={item.link}>
-                              {item.text}
+                              {getNavText(item)}
                             </ResolvedLink>
                           </SheetClose>
                         </div>
                       );
                     })}
+                    <div className="w-full border-b border-gray-300 py-2">
+                      <SheetClose asChild>
+                        <LanguageToggle lang={lang} />
+                      </SheetClose>
+                    </div>
                   </div>
                 </SheetContent>
               </Sheet>
@@ -137,17 +149,21 @@ export default async function Header({ headerTheme, lang = "es" }: HeaderProps) 
                 headerTheme === "light" && "text-primary",
               )}
             >
-              {navigation.map((item) => {
+              {navigation.map((item: any) => {
                 return (
                   <ResolvedLink
                     className="text-accent-foreground hover:text-primary"
                     key={item._key}
                     link={item.link}
                   >
-                    {item.text}
+                    {getNavText(item)}
                   </ResolvedLink>
                 );
               })}
+              <LanguageToggle
+                lang={lang}
+                className="text-accent-foreground hover:text-primary"
+              />
             </div>
           </div>
         </div>

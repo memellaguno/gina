@@ -28,5 +28,5 @@ export default async function Page(props: Props) {
     return notFound();
   }
 
-  return <PageWithHeader page={page as any} lang="en" />;
+  return <PageWithHeader page={page as any} lang="es" />;
 }

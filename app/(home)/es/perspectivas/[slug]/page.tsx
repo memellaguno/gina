@@ -5,6 +5,7 @@ import { postQuery, postPagesSlugs } from "@/sanity/lib/queries";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PostDetail from "@/components/blog/PostDetail";
+import { POST_WITH_HOME_CTA_QUERY } from "@/sanity/queries/postWithCta";
 
 export async function generateStaticParams() {
   const { data } = await sanityFetch({
@@ -27,14 +28,18 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     stega: false,
   });
 
+  const title = post?.title;
+  const description = post?.excerpt;
+
   return {
-    title: post?.title ? `${post.title} | Perspectivas` : "Perspectivas",
-    description: post?.excerpt || "",
+    title: title ? `${title} | Perspectivas` : "Perspectivas",
+    description: description || "",
   } satisfies Metadata;
 }
 
 export default async function PostPage(props: Props) {
   const params = await props.params;
+
   const { data: post } = await sanityFetch({
     query: postQuery,
     params,
@@ -44,11 +49,20 @@ export default async function PostPage(props: Props) {
     return notFound();
   }
 
+  const { data: home } = await sanityFetch({
+    query: POST_WITH_HOME_CTA_QUERY,
+  });
+
+  const homeCta = home?.homeCta;
   return (
     <>
       <Header headerTheme="light" lang="es" />
       <main>
-        <PostDetail post={post} lang="es" />
+        <PostDetail
+          post={post}
+          homeCta={homeCta}
+          lang="es"
+        />
       </main>
       <Footer lang="es" />
     </>

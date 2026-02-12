@@ -9,15 +9,20 @@ interface ResolvedLinkProps {
   link: any;
   children: React.ReactNode;
   className?: string;
+  lang?: "es" | "en";
 }
 
 export default function ResolvedLink({
   link,
   children,
   className,
+  lang,
 }: ResolvedLinkProps) {
   const pathname = usePathname();
-  const resolvedLink = linkResolver(link);
+
+  // Auto-detect lang from pathname if not explicitly passed
+  const resolvedLang = lang || (pathname.startsWith("/es") ? "es" : "en");
+  const resolvedLink = linkResolver(link, resolvedLang);
 
   if (typeof resolvedLink !== "string") {
     return <>{children}</>;

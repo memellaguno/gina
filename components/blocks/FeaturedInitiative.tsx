@@ -10,7 +10,7 @@ type Props = {
   lang?: "es" | "en";
 };
 
-//HOME /latest initiative
+//HOME/ABOUT /latest initiative /foto+texto
 
 export default function FeaturedInitiative({ block, lang = "es" }: Props) {
   const eyebrow = lang === "en" && block.eyebrowEn ? block.eyebrowEn : block.eyebrow;
@@ -21,11 +21,18 @@ export default function FeaturedInitiative({ block, lang = "es" }: Props) {
     lang === "en" && block.buttonTextEn ? block.buttonTextEn : block.buttonText;
   const imagePosition = stegaClean(block.imagePosition) || "right";
 
+  const style = stegaClean(block.style) || "home";
+
+  const styleClasses = {
+    home: "w-full bg-transparent homeobject",
+    about: "w-full bg-transparent aboutobject",
+  };
+
   return (
-    <section className="w-full bg-transparent">
+    <section className={cn("", styleClasses[style as keyof typeof styleClasses])}>
       <div className="mx-auto w-full max-w-[1900px] px-4 py-6 md:px-8 md:py-10 pb-0">
         <div className="w-full py-10 children">
-          <div className="mx-auto w-full max-w-[1400px] px-4 py-6 md:px-8 md:py-10">
+          <div className="mx-auto w-full child px-4 py-6 md:px-8 md:py-10">
             <div
               className={cn(
                 "grid gap-8 md:grid-cols-2 md:gap-12 lg:gap-16 bio-grid-reverse",

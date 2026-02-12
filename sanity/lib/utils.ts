@@ -43,7 +43,7 @@ export function resolveOpenGraphImage(image: any, width = 1200, height = 627) {
 }
 
 // Depending on the type of link, we need to fetch the corresponding page, post, or URL.  Otherwise return null.
-export function linkResolver(link: any | undefined) {
+export function linkResolver(link: any | undefined, lang: "es" | "en" = "es") {
   if (!link) return null;
 
   // If linkType is not set but href is, lets set linkType to "href".  This comes into play when pasting links into the portable text editor because a link type is not assumed.
@@ -55,13 +55,18 @@ export function linkResolver(link: any | undefined) {
     case "href":
       return link.href || null;
     case "route":
+      if (lang === "en" && link.routeEn) return link.routeEn;
       return link.route || null;
     case "page":
       if (link?.page) {
-        let path =
-          link.page?.slug?.current === "home"
-            ? "/"
-            : `/${link.page?.slug?.current}`;
+        const slug = link.page?.slug?.current;
+        const isHome = slug === "home";
+        let path = isHome ? "/" : `/${slug}`;
+
+        // Prefix with /es for Spanish, except homepage which becomes /es
+        if (lang === "es") {
+          path = isHome ? "/es" : `/es/${slug}`;
+        }
 
         if (link.linkToSection && link.linkToSection !== "initial") {
           return `${path}/#${_.kebabCase(link.linkToSection)}`;

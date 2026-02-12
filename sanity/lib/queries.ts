@@ -83,6 +83,7 @@ export const HEADER_NAVIGATION_QUERY = groq`
     navigation[] {
       ...,
       text,
+      textEn,
       _key,
       link {
         ...,
@@ -255,6 +256,16 @@ const PAGE_BUILDER_CONTENT_QUERY = /* groq */ `
         "blurDataUrl": asset->metadata.lqip
       }
     },
+    _type == "videoGallery" => {
+      ...,
+      "videos": videos[]->{
+        _id,
+        title,
+        titleEn,
+        videoUrl,
+        poster,
+      }
+    },
     _type == "form" => {
       ...
     },
@@ -360,6 +371,17 @@ export const postQuery = defineQuery(`
       }
     },
     ${postFields}
+  }
+`);
+
+export const allVideosQuery = defineQuery(`
+  *[_type == "video"] | order(date desc, _updatedAt desc) {
+    _id,
+    "title": coalesce(title, "Untitled"),
+    titleEn,
+    videoUrl,
+    poster,
+    "date": coalesce(date, _updatedAt),
   }
 `);
 

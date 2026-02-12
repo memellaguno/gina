@@ -1,5 +1,6 @@
 import { TITLE_DESCRIPTION, TITLE_TEXT } from "@/sanity/lib/constants";
 import { formatString } from "@/sanity/lib/helpers";
+import { englishFieldset } from "@/sanity/lib/localizedFields";
 
 import { TextCursor, TextCursorInput } from "lucide-react";
 import React from "react";
@@ -9,6 +10,10 @@ import _ from "lodash";
 export default defineType({
   name: "form",
   type: "object",
+  fieldsets: [
+    { name: "content", title: "Content (Spanish)" },
+    englishFieldset,
+  ],
   fields: [
     defineField({
       name: "title",
@@ -17,21 +22,76 @@ export default defineType({
       type: "string",
       hidden: true,
     }),
+    // Spanish
     defineField({
       name: "heading",
+      title: "Heading (ES)",
       type: "string",
+      description: "Title from left side",
+      fieldset: "content",
+    }),
+    defineField({
+      name: "subheading",
+      title: "Subheading (ES)",
+      type: "string",
+      description: "Subtitle from left side",
+      fieldset: "content",
+    }),
+    defineField({
+      name: "text1",
+      title: "Text (ES)",
+      type: "text",
+      description: "Text from left side",
+      rows: 2,
+      fieldset: "content",
     }),
     defineField({
       name: "text",
+      title: "Right Side Text (ES)",
       type: "text",
-      description: "Optional text below heading",
+      description: "Text from right side",
       rows: 2,
+      fieldset: "content",
+    }),
+    // English
+    defineField({
+      name: "headingEn",
+      title: "Heading (EN)",
+      type: "string",
+      fieldset: "english",
+    }),
+    defineField({
+      name: "subheadingEn",
+      title: "Subheading (EN)",
+      type: "string",
+      fieldset: "english",
+    }),
+    defineField({
+      name: "text1En",
+      title: "Text (EN)",
+      type: "text",
+      rows: 2,
+      fieldset: "english",
+    }),
+    defineField({
+      name: "textEn",
+      title: "Right Side Text (EN)",
+      type: "text",
+      rows: 2,
+      fieldset: "english",
+    }),
+    // Shared
+    defineField({
+      name: "email",
+      type: "string",
+      description: "Email to receive messages",
     }),
     defineField({
       name: "items",
-      title: "Form input fields",
+      title: "Form input fields (ES)",
       type: "array",
       description: "Add input fields like Name, Email, Phone, etc",
+      fieldset: "content",
       of: [
         defineField({
           name: "formItems",
@@ -49,15 +109,26 @@ export default defineType({
             }),
             defineField({
               name: "title",
-              title: "Field Title",
+              title: "Field Title (ES)",
               description: "Title above input field",
               type: "string",
               validation: (Rule) => Rule.required(),
             }),
             defineField({
+              name: "titleEn",
+              title: "Field Title (EN)",
+              type: "string",
+            }),
+            defineField({
               name: "placeholder",
+              title: "Placeholder (ES)",
               type: "string",
               description: "Optional: Custom placeholder inside input field.",
+            }),
+            defineField({
+              name: "placeholderEn",
+              title: "Placeholder (EN)",
+              type: "string",
             }),
           ],
           icon: TextCursor,
