@@ -83,23 +83,7 @@ export default async function Footer({ lang = "es" }: FooterProps) {
             </section>
 
             {/* Contact Block */}
-            <section className="footer-links px-3">
-              <p className="text-base font-medium">{lang === "en" ? "Links" : "Enlaces"}</p>
-              <div className="flex flex-col">
-                {footerNavigation.map((item: any) => {
-                  const text = lang === "en" && item.textEn ? item.textEn : item.text;
-                  return (
-                    <ResolvedLink
-                      className="py-1 text-sm opacity-100 md:text-base hover:opacity-70"
-                      key={item._key}
-                      link={item.link}
-                    >
-                      {text}
-                    </ResolvedLink>
-                  );
-                })}
-              </div>
-            </section>
+            
 
             {/* Newsletter */}
             <section className="footer-newsletter">
