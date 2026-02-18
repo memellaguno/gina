@@ -23,7 +23,9 @@ type Props = {
 
 export default function VideoGallery({ block, lang = "es" }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const videos = (block.videos || []).filter(Boolean);
+  const videos = (block.videos || [])
+    .filter(Boolean)
+    .filter((v, i, arr) => arr.findIndex((x) => x._id === v._id) === i);
 
   const isPrevDisabled = currentIndex === 0;
   const isNextDisabled = currentIndex === videos.length - 1;
