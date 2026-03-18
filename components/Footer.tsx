@@ -86,13 +86,22 @@ export default async function Footer({ lang = "es" }: FooterProps) {
             
 
             {/* Newsletter */}
-            <section className="footer-newsletter">
-              <p className="text-base font-medium">{lang === "en" ? "SUBSCRIBE TO OUR NEWSLETTER" : "SUSCRÍBETE A NUESTRO BOLETÍN"}</p>
-              <form className="newsletter" action="{settings.socials.newsletter.url}">
-                <input type="email" placeholder={lang === "en" ? "ENTER YOUR EMAIL" : "INGRESA TU EMAIL"}/>
-                <button className="text-underline text-primary">{lang === "en" ? "SEND" : "ENVIAR"}</button>
-              </form>
-            </section>
+            {socials?.newsletter?.embedHtml ? (
+              <section className="footer-newsletter">
+                <div dangerouslySetInnerHTML={{ __html: socials.newsletter.embedHtml }} />
+              </section>
+            ) : socials?.newsletter?.url ? (
+              <section className="footer-newsletter">
+                <a
+                  href={socials.newsletter.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-underline text-base font-medium text-primary"
+                >
+                  {lang === "en" ? "SUBSCRIBE TO OUR NEWSLETTER" : "SUSCRÍBETE A NUESTRO BOLETÍN"}
+                </a>
+              </section>
+            ) : null}
 
           </div>
           <div className="footer-down pt-8">

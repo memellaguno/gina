@@ -213,12 +213,17 @@ export default defineType({
           type: "object",
           fields: [
             defineField({
-              name: "title",
-              type: "string",
+              name: "embedHtml",
+              title: "Embed HTML",
+              type: "text",
+              rows: 6,
+              description: "Paste the embed code from your newsletter service (Mailchimp, Substack, Mailerlite, etc.)",
             }),
             defineField({
               name: "url",
+              title: "Subscribe Link",
               type: "url",
+              description: "If no embed code, provide a link to your newsletter signup page",
             }),
           ],
         }),
