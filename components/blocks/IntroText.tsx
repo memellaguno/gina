@@ -29,9 +29,7 @@ export default function IntroText({ block, lang = "es" }: Props) {
             {heading}
           </h2>
         )}
-        {block.eyebrowEn.length==0 && (
-        <p className="mb-8 max-w-md text-sm small reveal md:text-1xl lg:text-2xl ">She has built her legacy by bridging <b>business and creativity, education and opportunity, women and leadership</b>
-        </p>)}
+        
       </div>
     </section>
   );

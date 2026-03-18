@@ -107,7 +107,7 @@ export default async function Footer({ lang = "es" }: FooterProps) {
                     {socials?.instagram && (
                       <a
                         href={`https://www.instagram.com/${socials.instagram}`}
-                        className="py-1 text-sm md:text-base"
+                        className="py-1 px-2 text-sm md:text-base"
                       >
                         Instagram
                       </a>
