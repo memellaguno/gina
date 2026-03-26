@@ -23,6 +23,9 @@ export type ContactBlockType = {
   descriptionEn?: string;
   showForm?: boolean;
   contactInfo?: ContactInfo;
+  settings?: {
+    contactInfo?: ContactInfo;
+  };
   image?: {
     asset?: {
       _ref: string;
@@ -41,10 +44,17 @@ export default function ContactBlock({ block, lang = "es" }: ContactBlockProps) 
 
   const heading = lang === "en" && block.headingEn ? block.headingEn : block.heading;
   const description = lang === "en" && block.descriptionEn ? block.descriptionEn : block.description;
-  const { showForm = true, contactInfo, image } = block;
+  const { showForm = true, contactInfo, settings, image } = block;
+
+  // Email always comes from global settings; phone/address can be overridden at block level
+  const resolvedContactInfo: ContactInfo = {
+    email: settings?.contactInfo?.email,
+    phone: contactInfo?.phone || settings?.contactInfo?.phone,
+    address: contactInfo?.address || settings?.contactInfo?.address,
+  };
 
   const hasImage = image?.asset?._ref;
-  const hasContactInfo = contactInfo?.email || contactInfo?.phone || contactInfo?.address;
+  const hasContactInfo = resolvedContactInfo.email || resolvedContactInfo.phone || resolvedContactInfo.address;
 
   return (
     <>
@@ -74,35 +84,35 @@ export default function ContactBlock({ block, lang = "es" }: ContactBlockProps) 
             {/* Contact Info */}
             {hasContactInfo && (
               <div className="mt-4 flex flex-col gap-4">
-                {contactInfo?.email && (
+                {resolvedContactInfo.email && (
                   <div className="flex items-center gap-3">
                     <Mail className="h-5 w-5 text-secondary" />
                     <a
-                      href={`mailto:${contactInfo.email}`}
+                      href={`mailto:${resolvedContactInfo.email}`}
                       className="text-gray-700 hover:text-secondary transition-colors"
                     >
-                      {contactInfo.email}
+                      {resolvedContactInfo.email}
                     </a>
                   </div>
                 )}
 
-                {contactInfo?.phone && (
+                {resolvedContactInfo.phone && (
                   <div className="flex items-center gap-3">
                     <Phone className="h-5 w-5 text-secondary" />
                     <a
-                      href={`tel:${contactInfo.phone}`}
+                      href={`tel:${resolvedContactInfo.phone}`}
                       className="text-gray-700 hover:text-secondary transition-colors"
                     >
-                      {contactInfo.phone}
+                      {resolvedContactInfo.phone}
                     </a>
                   </div>
                 )}
 
-                {contactInfo?.address && (
+                {resolvedContactInfo.address && (
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-secondary mt-1" />
                     <p className="text-gray-700 whitespace-pre-line">
-                      {contactInfo.address}
+                      {resolvedContactInfo.address}
                     </p>
                   </div>
                 )}

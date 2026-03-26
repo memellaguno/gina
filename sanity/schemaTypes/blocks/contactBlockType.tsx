@@ -44,18 +44,13 @@ export default defineType({
       initialValue: true,
       description: "Display the contact form",
     }),
-    // Contact info to display
+    // Contact info to display (email comes from global Settings)
     defineField({
       name: "contactInfo",
       title: "Contact Information",
       type: "object",
+      description: "Email is managed in global Settings. Phone and address can be overridden here.",
       fields: [
-        defineField({
-          name: "email",
-          title: "Email",
-          type: "string",
-          description: "Contact email to display (form submissions go to Settings email)",
-        }),
         defineField({
           name: "phone",
           title: "Phone",
