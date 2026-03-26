@@ -13,7 +13,11 @@ export type Form = {
   text1En?: string;
   text?: string;
   textEn?: string;
-  email?: string;
+  settings?: {
+    contactInfo?: {
+      email?: string;
+    };
+  };
   items?: Array<{
     type?: "email" | "message" | "phone" | "text";
     title?: string;
@@ -114,8 +118,8 @@ export default function Form({ block, lang = "es" }: FormProps) {
           {text1 && (
           <p className="max-w-sm mb-2 md:text-1xl lg:text-2xl">{text1}</p>
           )}
-          {block.email && (
-          <a href={`mailto:${block.email}`} className="text-primary md:text-1xl lg:text-3xl">{block.email}</a>
+          {block.settings?.contactInfo?.email && (
+          <a href={`mailto:${block.settings.contactInfo.email}`} className="text-primary md:text-1xl lg:text-3xl">{block.settings.contactInfo.email}</a>
           )}
         </div>
 

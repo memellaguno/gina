@@ -82,11 +82,6 @@ export default defineType({
     }),
     // Shared
     defineField({
-      name: "email",
-      type: "string",
-      description: "Email to receive messages",
-    }),
-    defineField({
       name: "items",
       title: "Form input fields (ES)",
       type: "array",
