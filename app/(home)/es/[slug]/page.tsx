@@ -18,6 +18,20 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const { slug } = await props.params;
+  return {
+    alternates: {
+      canonical: `/es/${slug}`,
+      languages: {
+        en: `/${slug}`,
+        es: `/es/${slug}`,
+        "x-default": `/${slug}`,
+      },
+    },
+  };
+}
+
 export default async function Page(props: Props) {
   const params = await props.params;
 

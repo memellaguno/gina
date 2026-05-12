@@ -8,6 +8,14 @@ import PostsGrid from "@/components/blog/PostsGrid";
 export const metadata: Metadata = {
   title: "Perspectives | Gina Diez Barroso",
   description: "Conversations that inspire.",
+  alternates: {
+    canonical: "/perspectives",
+    languages: {
+      en: "/perspectives",
+      es: "/es/perspectivas",
+      "x-default": "/perspectives",
+    },
+  },
 };
 
 export default async function PerspectivesPage() {

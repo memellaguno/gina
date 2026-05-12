@@ -34,6 +34,14 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   return {
     title: title ? `${title} | Perspectives` : "Perspectives",
     description: description || "",
+    alternates: {
+      canonical: `/perspectives/${params.slug}`,
+      languages: {
+        en: `/perspectives/${params.slug}`,
+        es: `/es/perspectivas/${params.slug}`,
+        "x-default": `/perspectives/${params.slug}`,
+      },
+    },
   } satisfies Metadata;
 }
 

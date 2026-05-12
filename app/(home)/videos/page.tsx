@@ -8,6 +8,14 @@ import VideoGrid from "@/components/video/VideoGrid";
 export const metadata: Metadata = {
   title: "Videos | Gina Diez Barroso",
   description: "Watch our latest videos.",
+  alternates: {
+    canonical: "/videos",
+    languages: {
+      en: "/videos",
+      es: "/es/videos",
+      "x-default": "/videos",
+    },
+  },
 };
 
 export default async function VideosPage() {

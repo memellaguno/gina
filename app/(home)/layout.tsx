@@ -2,6 +2,7 @@ import "../globals.css";
 import React from "react";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleTagManager } from "@next/third-parties/google";
 import Script from "next/script";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -96,7 +97,16 @@ export default async function RootLayout({
       lang="en"
       className={`bg-white text-black ${modale.variable} ${flecham.variable} font-sans`}
     >
+      <GoogleTagManager gtmId="GTM-TTV3TBX4" />
       <body className="font-body">
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TTV3TBX4"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <RevealOnScroll />
         <section className="">
           <Toaster />

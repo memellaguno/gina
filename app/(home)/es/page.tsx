@@ -18,6 +18,17 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/es",
+    languages: {
+      en: "/",
+      es: "/es",
+      "x-default": "/",
+    },
+  },
+};
+
 export default async function Page(props: Props) {
   const params = await props.params;
   const [{ data: page }] = await Promise.all([

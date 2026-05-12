@@ -18,20 +18,20 @@ export async function generateStaticParams() {
   return data;
 }
 
-/* export async function generateMetadata(props: Props): Promise<Metadata> {
-  const params = await props.params;
-  const { data: page } = await sanityFetch({
-    query: getPageQuery,
-    params,
-    stega: false,
-  });
-
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const { slug } = await props.params;
   return {
-    title: page?.name,
-    description: page?.heading,
-  } satisfies Metadata;
+    alternates: {
+      canonical: `/${slug}`,
+      languages: {
+        en: `/${slug}`,
+        es: `/es/${slug}`,
+        "x-default": `/${slug}`,
+      },
+    },
+  };
 }
- */
+
 export default async function Page(props: Props) {
   const params = await props.params;
 
